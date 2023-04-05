@@ -1,1 +1,1 @@
-web: gunicorn hungrchef.wsgi
+web: gunicorn hungrychef.wsgi
