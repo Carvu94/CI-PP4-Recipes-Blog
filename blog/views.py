@@ -1,9 +1,17 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
-from .models import Recipe
+from .models import Recipe, Category
+
+
+class CategoriesList(generic.ListView):
+    model = Category
+    template_name = 'categories.html'
 
 
 class RecipeList(generic.ListView):
+    """
+    Renders the recipes page
+    """
     model = Recipe
     queryset = Recipe.objects.filter(status=1).order_by('-created_on')
     template_name = 'index.html'
@@ -11,7 +19,9 @@ class RecipeList(generic.ListView):
 
 
 class RecipeDetail(View):
-
+    """
+    Renders the recipe detail page
+    """
     def get(self, request, slug, *args, **kwargs):
         queryset = Recipe.objects.filter(status=1)
         recipe = get_object_or_404(queryset, slug=slug)

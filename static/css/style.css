@@ -152,3 +152,16 @@ body {
     background: transparent;
     border: none;
 }
+
+/* Categories page */
+
+.categories-cont {
+    max-width: 50%;
+    display: inline-table;
+}
+
+.category-title {
+    text-align: center;
+    align-items: center;
+    display: grid;
+}

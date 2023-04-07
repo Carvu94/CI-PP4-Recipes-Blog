@@ -1,25 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    <h2 class="title">Categories</h2>
-    <div class="container box-shadow">
-        <div class="row">
-            {% for category in categories_list %}
-            <div class="col-md-4">
-                <a href="{% url 'categories_posts' category.title %}" aria-label="Go to the category post page">
-                    <div class="content-img">
-                        <div class="overlay"></div>
-                        <img src="{{ category.category_image.url}}"
-                        alt=" {{ category.title }} Image">
-                        <div class="content-categorie content-categorie-center">
-                            <h3>{{ category.title}}</h3>
-                        </div>
-                    </div>
-                </a>
+    {% for category in object_list %}
+    <div class="container-lg categories-cont row">
+        <div class="card bg-dark text-white">
+            {% if 'placeholder' in category.category_image.url %}
+            <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" class="card-img" alt="...">
+            {% else %}
+            <img src="{{ category.category_image.url }}" class="card-img" alt="...">
+            {% endif %}
+            <div class="card-img-overlay category-title">
+                <h5 class="card-title">{{ category.title }}</h5>
             </div>
-            {% endfor %}
         </div>
     </div>
+    {% endfor %}
 
 {% endblock %}
