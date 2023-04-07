@@ -3,15 +3,17 @@
 {% block content %}
     {% for category in object_list %}
     <div class="container-lg categories-cont row">
-        <div class="card bg-dark text-white">
+        <div class="card text-white">
             {% if 'placeholder' in category.category_image.url %}
-            <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" class="card-img" alt="...">
+            <img src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img" alt="...">
             {% else %}
             <img src="{{ category.category_image.url }}" class="card-img" alt="...">
             {% endif %}
-            <div class="card-img-overlay category-title">
-                <h5 class="card-title">{{ category.title }}</h5>
-            </div>
+            <a href="#">
+                <div class="card-img-overlay category-title">
+                    <h5 class="card-title">{{ category.title }}</h5>
+                </div>
+            </a>
         </div>
     </div>
     {% endfor %}

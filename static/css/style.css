@@ -157,11 +157,31 @@ body {
 
 .categories-cont {
     max-width: 50%;
+    margin-top: 16px;
     display: inline-table;
+}
+
+.categories-cont img {
+    max-height: 150px;
+    object-fit: cover;
+}
+
+.categories-cont h5 {
+    text-decoration: none;
+    color: white;
 }
 
 .category-title {
     text-align: center;
     align-items: center;
     display: grid;
+}
+
+/* Carousel */
+
+.carousel-inner {
+    max-height: 300px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
 }
