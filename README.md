@@ -1,4 +1,4 @@
-# Hungy Chef
+# Hungry Chef
 
 (Developer: Matej Car)
 
@@ -28,7 +28,12 @@
 
 
 
-## User Experience
+# User Experience
+
+
+### Agile Methodology
+
+
 
 
 [Back to Table Of Contents](#table-of-contents)
@@ -54,6 +59,14 @@
 
 ## Technical Design
 
+
+### Agile Design
+
+
+### Data Model
+
+
+### Wireframes
 
 
 
