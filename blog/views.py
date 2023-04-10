@@ -17,6 +17,13 @@ def about(request):
     return render(request, "about.html")
 
 
+def contact_us(request):
+    """
+    Renders contact us page
+    """
+    return render(request, "contact.html")
+
+
 class CategoriesList(generic.ListView):
     """
     Renders Categories page
