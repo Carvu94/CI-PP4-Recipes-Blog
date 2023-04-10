@@ -3,7 +3,17 @@ from django.views import generic, View
 from .models import Recipe, Category
 
 
+def home(request):
+    """
+    Renders Home page
+    """
+    return render(request, "index.html")
+
+
 class CategoriesList(generic.ListView):
+    """
+    Renders Categories page
+    """
     model = Category
     template_name = 'categories.html'
 
@@ -14,7 +24,7 @@ class RecipeList(generic.ListView):
     """
     model = Recipe
     queryset = Recipe.objects.filter(status=1).order_by('-created_on')
-    template_name = 'index.html'
+    template_name = 'recipes.html'
     paginate_by = 6
 
 
