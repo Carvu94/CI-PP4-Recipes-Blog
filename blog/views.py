@@ -10,6 +10,13 @@ def home(request):
     return render(request, "index.html")
 
 
+def about(request):
+    """
+    Renders About page
+    """
+    return render(request, "about.html")
+
+
 class CategoriesList(generic.ListView):
     """
     Renders Categories page
