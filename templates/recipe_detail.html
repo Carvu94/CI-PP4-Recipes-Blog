@@ -71,6 +71,29 @@
                     <!-- comment body -->
                     {{ comment.body | linebreaks }}
                 </div>
+                {% if user.is_authenticated and user.username == comment.name or user.is_superuser %}
+                <a href="#" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Comments Page">Edit</a>
+                    <button type="button" class="btn-delete btn-sm btn-danger mb-3" data-bs-toggle="modal"
+                        data-bs-target="#delete-comment">Delete</button>
+                <div class="modal fade" id="delete-comment"
+                        tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Delete Comment</h5>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete your comment?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <a href="{% url 'delete_comment' comment.id %}" class="btn btn-danger" aria-label="Delete Comment">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>

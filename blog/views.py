@@ -1,7 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
-from .models import Recipe, Category
+from .models import Recipe, Category, Comment
 from .forms import CommentForm
+from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -97,3 +100,13 @@ class RecipeDetail(View):
                 "comment_form": CommentForm()
             },
         )
+
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    comment.delete()
+
+    return HttpResponseRedirect(reverse(
+        'recipe_detail', args=[comment.post.slug]
+    ))

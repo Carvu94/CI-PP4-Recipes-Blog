@@ -9,4 +9,6 @@ urlpatterns = [
     path('categories/', views.CategoriesList.as_view(), name="categories"),
     path('contact', views.contact_us, name="contact"),
     path('<slug:slug>/', views.RecipeDetail.as_view(), name="recipe_detail"),
+    path('delete_comment/<int:comment_id>', views.delete_comment,
+         name='delete_comment'),
  ]
