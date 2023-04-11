@@ -74,12 +74,20 @@
                 {% endfor %}
             </div>
         </div>
+
         <!-- Add comments -->
         <div class="col-md-4 card mb-4  mt-3 ">
             <div class="card-body">
+                {% if commented %}
+                <div class="alert alert-success" role="alert">
+                    Your comment is awaiting approval
+                </div>
+                {% else %}
+
                 {% if user.is_authenticated %}
+
                 <h3>Leave a comment:</h3>
-                <p>Posted by: {{ user.username }}</p>
+                <p>Posting as: {{ user.username }}</p>
                 <form method="post" style="margin-top: 1.3em;">
                     {{ comment_form | crispy }}
                     {% csrf_token %}
@@ -87,6 +95,8 @@
                 </form>
 
                 {% endif %}
+                {% endif %}
+
             </div>
         </div>
     </div>
