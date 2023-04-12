@@ -5,6 +5,7 @@ from .forms import CommentForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.views.generic import UpdateView
 
 
 def home(request):
@@ -104,9 +105,21 @@ class RecipeDetail(View):
 
 @login_required
 def delete_comment(request, comment_id):
+    """
+    Delete comment
+    """
     comment = get_object_or_404(Comment, id=comment_id)
     comment.delete()
 
     return HttpResponseRedirect(reverse(
         'recipe_detail', args=[comment.post.slug]
     ))
+
+
+class EditComment(LoginRequiredMixin, UpdateView):
+    """
+    Edit Comment
+    """
+    model = Comment
+    template_name = 'edit_comment.html'
+    form_class = CommentForm
