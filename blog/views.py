@@ -50,7 +50,13 @@ class RecipeList(generic.ListView):
 class AddRecipeView(generic.CreateView):
     model = Recipe
     template_name = 'add_recipe.html'
-    fields = '__all__'
+    fields = (
+        'title',
+        'author',
+        'content',
+        'featured_image',
+        'categories',
+        'time_to_cook')
 
 
 class RecipeDetail(View):

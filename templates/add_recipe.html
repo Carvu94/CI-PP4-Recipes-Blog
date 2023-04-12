@@ -4,4 +4,10 @@
 
 <h1>Add recipe</h1>
 
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-info" value="Save">Add Recipe</button>
+</form>
+
 {% endblock %}
