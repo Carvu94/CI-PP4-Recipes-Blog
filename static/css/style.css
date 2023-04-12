@@ -177,6 +177,13 @@ body {
     display: grid;
 }
 
+/* Recipes page */
+
+.page-title{
+    display: block;
+    text-align: center;
+}
+
 /* Carousel */
 
 .carousel-inner {

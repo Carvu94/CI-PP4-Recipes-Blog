@@ -5,7 +5,7 @@ from .forms import CommentForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, CreateView
 
 
 def home(request):
@@ -45,6 +45,12 @@ class RecipeList(generic.ListView):
     queryset = Recipe.objects.filter(status=1).order_by('-created_on')
     template_name = 'recipes.html'
     paginate_by = 6
+
+
+class AddRecipeView(generic.CreateView):
+    model = Recipe
+    template_name = 'add_recipe.html'
+    fields = '__all__'
 
 
 class RecipeDetail(View):
