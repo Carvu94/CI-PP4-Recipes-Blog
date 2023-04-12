@@ -95,12 +95,13 @@
                         </div>
                 </div>
                 {% endif %}
+                <hr>
                 {% endfor %}
             </div>
         </div>
-
-        <!-- Add comments -->
-        <div class="col-md-4 card mb-4  mt-3 ">
+    </div>
+    <!-- Add comments -->
+        <div class="col-md-4 card mb-4 mt-3 comment-card">
             <div class="card-body">
                 {% if commented %}
                 <div class="alert alert-success" role="alert">
@@ -123,7 +124,6 @@
 
             </div>
         </div>
-    </div>
 </div>
 
 {% endblock content %}
