@@ -44,6 +44,12 @@
                         {% endwith %}
                     </div>
                 </div>
+                {% if user.is_authenticated and user.username == comment.name or user.is_superuser %}
+
+                <a href="{% url 'edit_recipe' recipe.id %}" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Recipe Page">Edit</a>
+
+                {% endif %}
+
             </div>
         </div>
     </div>

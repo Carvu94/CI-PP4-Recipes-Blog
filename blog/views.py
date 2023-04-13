@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic import UpdateView, CreateView
+from django.utils.decorators import method_decorator
 
 
 def home(request):
@@ -57,6 +58,13 @@ class AddRecipeView(generic.CreateView):
         'featured_image',
         'categories',
         'time_to_cook')
+
+
+@method_decorator(login_required, name='dispatch')
+class EditRecipeView(LoginRequiredMixin, UpdateView):
+    model = Recipe
+    template_name = 'edit_recipe.html'
+    fields = ('title', 'content', 'categories', 'time_to_cook')
 
 
 class RecipeDetail(View):
