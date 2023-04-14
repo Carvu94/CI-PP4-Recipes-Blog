@@ -76,3 +76,12 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return reverse('recipe_detail', args=[self.post.slug])
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio = models.TextField()
+    image = CloudinaryField('image', default='placeholder')
+
+    def __str__(self):
+        return str(self.user)
