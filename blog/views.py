@@ -161,7 +161,6 @@ class ProfilePageView(DetailView):
     template_name = 'user_profile.html'
 
     def get_context_data(self, *args, **kwargs):
-        users = Profile.objects.all()
         context = super(ProfilePageView, self).get_context_data(
             *args, **kwargs)
 

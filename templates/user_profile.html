@@ -4,5 +4,31 @@
 
 <h1>Profile</h1>
 
+<div class="card mb-3">
+    <div class="row no-gutters">
+        <div class="col-md-2">
+            {% if page_user.user.image %}
+            <img src="{{ recipe.author.prfile.image.url }}" alt="" class="card-img">
+
+            {% else %}
+            <img src="https://www.stockvault.net/data/2010/03/13/113298/preview16.jpg%" alt="" class="card-img">
+
+            {% endif %}
+        </div>
+        <div class="col-md-10">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ page_user.user}}
+                    {{ page_user.user.first_name }}
+                    {{ page_user.user.last_name }}
+                </h5>
+
+                <p class="card-text">
+                    {{ page_user.bio }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
