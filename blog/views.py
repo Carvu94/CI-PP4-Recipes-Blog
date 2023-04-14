@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
-from .models import Recipe, Category, Comment
+from .models import Recipe, Category, Comment, Profile
 from .forms import CommentForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -154,5 +154,18 @@ class EditComment(LoginRequiredMixin, UpdateView):
 
 
 class ProfilePageView(DetailView):
+    """
+    Profile Page Veiw
+    """
     model = Profile
     template_name = 'user_profile.html'
+
+    def get_context_data(self, *args, **kwargs):
+        users = Profile.objects.all()
+        context = super(ProfilePageView, self).get_context_data(
+            *args, **kwargs)
+
+        page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
+
+        context["page_user"] = page_user
+        return context

@@ -10,7 +10,10 @@
                 <h1 class="post-title">{{ recipe.title }}
                 </h1>
                 <!-- Recipe author and created date -->
-                <p class="post-subtitle">{{ recipe.author }} | {{ recipe.created_on }}</p>
+                <a href="{% url 'profile_page' recipe.author.profile.id %}">
+                    <p class="post-subtitle">{{ recipe.author }}</p>
+                </a>
+                <p class="post-subtitle">{{ recipe.created_on }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <!-- The featured image URL goes in the src attribute -->

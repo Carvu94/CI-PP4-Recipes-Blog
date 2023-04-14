@@ -13,12 +13,12 @@ urlpatterns = [
           name='edit_recipe'),
      path('delete_recipe/<int:pk>', views.DeleteRecipeView.as_view(),
           name='delete_recipe'),
-     # path('delete_recipe/<int:pk>', views.delete_recipe,
-     #      name='delete_recipe'),
      path('add_recipe/', views.AddRecipeView.as_view(), name='add_recipe'),
      path('<slug:slug>/', views.RecipeDetail.as_view(), name="recipe_detail"),
      path('delete_comment/<int:comment_id>', views.delete_comment,
           name='delete_comment'),
      path('edit_comment/<int:pk>', views.EditComment.as_view(),
           name='edit_comment'),
+     path('<int:pk>/profile/', views.ProfilePageView.as_view(),
+          name='profile_page')
  ]
