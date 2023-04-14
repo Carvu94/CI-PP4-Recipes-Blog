@@ -5,7 +5,7 @@ from .forms import CommentForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.views.generic import UpdateView, CreateView, DeleteView
+from django.views.generic import UpdateView, CreateView, DeleteView, DetailView
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 
@@ -151,3 +151,8 @@ class EditComment(LoginRequiredMixin, UpdateView):
     model = Comment
     template_name = 'edit_comment.html'
     form_class = CommentForm
+
+
+class ProfilePageView(DetailView):
+    model = Profile
+    template_name = 'user_profile.html'
