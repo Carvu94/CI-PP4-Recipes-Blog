@@ -54,7 +54,7 @@
 - As a registered user I can access my profile so that I can edit my details and upload a profile image
 - As a registered user I can delete my comments so that the comments are no longer visible
 - As a registered user I can edit my comments so that I can update my comments
-- As a registered user I can create a cookbook so that I can add recipes that I like!!!!!
+- As a registered user I can create a cookbook so that I can add recipes that I like
 - As a registered user I can add a recipe to my cookbook so that I can easily find the recipes
 - As a registered user I can edit my cookbook so that I can change the list of recipes
 - As a registered user I can delete my cookbook so that my cookbook is no longer visible
@@ -67,8 +67,8 @@
 #### **Site Admin**
 - As a site admin I can approve/disapprove the comments so that I can decide if the content is relevant
 - As a site admin I can create, read, update, and delete recipes so that I can manage my content
-- As a site admin I can delete or update user's comments so that I manage my content!!!!!
-- As a site admin I can delete or update user's cookbooks so that I can manage my content!!!!
+- As a site admin I can delete or update user's comments so that I can manage my content
+- As a site admin I can delete or update user's cookbooks so that I can manage my content
 - As a site admin I can create draft recipes so that I can finish writing the content later
 - As a site admin I can create, update and delete categories so that I can manage my blog content
 
