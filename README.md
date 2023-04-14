@@ -182,12 +182,21 @@ For creating wireframes I was using Balsamiq.
 
 ## Solved Bugs
 
+**Integrity Bug**
 
+When submitting new post, the following error was returned: 
+
+*duplicate key value violates unique constraint "blog_recipe_slug_key"
+DETAIL: Key (slug)=() already exists.*
+
+After some research, I added 'slugify' method to the recipe model and redirected the user to the recipes page.
 
 
 ## Remaining Bugs
 
+**Admin Post Deletion**
 
+When the admin is deleting comments from the page view, the wrong comment is deleted.
 
 
 ## Deployment
