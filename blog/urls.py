@@ -20,5 +20,8 @@ urlpatterns = [
      path('edit_comment/<int:pk>', views.EditComment.as_view(),
           name='edit_comment'),
      path('<int:pk>/profile/', views.ProfilePageView.as_view(),
-          name='profile_page')
- ]
+          name='profile_page'),
+     path('<int:pk>/edit_profile/', views.EditProfilePageView.as_view(),
+          name='edit_profile'),
+
+]

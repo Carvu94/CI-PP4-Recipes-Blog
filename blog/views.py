@@ -168,3 +168,16 @@ class ProfilePageView(DetailView):
 
         context["page_user"] = page_user
         return context
+
+
+# class EditProfilePageView(generic.CreateView):
+#     model = Profile
+#     template_name = 'edit_profile.html'
+#     success_url = reverse_lazy('home')
+
+@method_decorator(login_required, name='dispatch')
+class EditProfilePageView(LoginRequiredMixin, UpdateView):
+    model = Profile
+    template_name = 'edit_profile.html'
+    fields = ('user', 'bio', 'image')
+    success_url = reverse_lazy('home')
