@@ -153,6 +153,13 @@ class EditComment(LoginRequiredMixin, UpdateView):
     form_class = CommentForm
 
 
+# @login_required
+# def ProfilePageView(request):
+#     if request.method == 'POST':
+#         user_form = UserUpdateForm(request.POST, istance=request.user)
+#         profile_form = ProfileUpdateForm(
+#             request.POST, request.FILES, instance=request.user.profile)
+        
 class ProfilePageView(DetailView):
     """
     Profile Page Veiw
@@ -181,3 +188,15 @@ class EditProfilePageView(LoginRequiredMixin, UpdateView):
     template_name = 'edit_profile.html'
     fields = ('user', 'bio', 'image')
     success_url = reverse_lazy('home')
+
+
+@login_required
+def delete_profile(request, profile_id):
+    """
+    Delete profile
+    """
+    profile = get_object_or_404(Profile, id=profile_id)
+    profile.delete()
+
+    return HttpResponseRedirect(reverse(
+        'home'))
