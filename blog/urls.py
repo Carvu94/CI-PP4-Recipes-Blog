@@ -19,9 +19,9 @@ urlpatterns = [
           name='delete_comment'),
      path('edit_comment/<int:pk>', views.EditComment.as_view(),
           name='edit_comment'),
-     path('<int:pk>/profile/', views.ProfilePageView.as_view(),
+     path('profile/<int:pk>', views.ProfilePageView.as_view(),
           name='profile_page'),
-     path('<int:pk>/edit_profile/', views.EditProfilePageView.as_view(),
+     path('edit_profile/<int:pk>/', views.EditProfilePageView.as_view(),
           name='edit_profile'),
 
 ]
