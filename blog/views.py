@@ -153,6 +153,18 @@ class EditComment(LoginRequiredMixin, UpdateView):
     form_class = CommentForm
 
 
+class RecipeLike(LoginRequiredMixin, View):
+    def post(self, request, slug, *args, **kwargs):
+        post = get_object_or_404(Recipe, slug=slug)
+
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
+
+        return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
+
+
 class ProfilePageView(DetailView):
     """
     Profile Page Veiw
