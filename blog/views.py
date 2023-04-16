@@ -63,6 +63,9 @@ class AddRecipeView(generic.CreateView):
 
 @method_decorator(login_required, name='dispatch')
 class EditRecipeView(LoginRequiredMixin, UpdateView):
+    """
+    Edit Recipe
+    """
     model = Recipe
     template_name = 'edit_recipe.html'
     fields = ('title', 'content', 'categories', 'time_to_cook')
@@ -70,6 +73,9 @@ class EditRecipeView(LoginRequiredMixin, UpdateView):
 
 @method_decorator(login_required, name='dispatch')
 class DeleteRecipeView(DeleteView):
+    """
+    Delete Recipe
+    """
     model = Recipe
     template_name = 'delete_recipe.html'
     success_url = reverse_lazy('recipes')
@@ -154,6 +160,9 @@ class EditComment(LoginRequiredMixin, UpdateView):
 
 
 class RecipeLike(LoginRequiredMixin, View):
+    """
+    Like Recipe
+    """
     def post(self, request, slug, *args, **kwargs):
         post = get_object_or_404(Recipe, slug=slug)
 
@@ -183,6 +192,9 @@ class ProfilePageView(DetailView):
 
 
 class CreateProfileView(LoginRequiredMixin, CreateView):
+    """
+    Create User Profile
+    """
     model = Profile
     form_class = ProfilePageForm
     template_name = 'create_profile.html'
@@ -194,6 +206,9 @@ class CreateProfileView(LoginRequiredMixin, CreateView):
 
 @method_decorator(login_required, name='dispatch')
 class EditProfilePageView(LoginRequiredMixin, UpdateView):
+    """
+    Edit User Profile
+    """
     model = Profile
     template_name = 'edit_profile.html'
     fields = ('user', 'bio', 'image')
@@ -201,6 +216,9 @@ class EditProfilePageView(LoginRequiredMixin, UpdateView):
 
 
 class DeleteUserProfile(LoginRequiredMixin, DeleteView):
+    """
+    Delete User Profile
+    """
     model = Profile
     template_name = 'delete_profile.html'
     form_class = ProfilePageForm
