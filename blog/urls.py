@@ -25,6 +25,8 @@ urlpatterns = [
           name='edit_profile'),
      path('delete_profile/<int:profile_id>', views.delete_profile,
           name='delete_profile'),
+     path('create_profile', views.CreateProfileView.as_view(),
+          name='create_profile'),
 
 
 ]

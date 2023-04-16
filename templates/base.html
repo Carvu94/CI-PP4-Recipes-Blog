@@ -63,9 +63,17 @@
                         <a class="nav-link active" href="{% url 'contact' %}">Contact</a>
                     </li>
                     {% if user.is_authenticated %}
+                    {% if user.profile.id %}
                     <li class="nav-item">
                         <a href="{% url 'profile_page' user.id %}"><p class="nav-link">{{ user.username | slice:":10" }}</p></a>
                     </li>
+
+                    {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'create_profile' %}"><p class="nav-link">Create Profile</p></a>
+                    </li>
+                    
+                    {% endif %}
 
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>

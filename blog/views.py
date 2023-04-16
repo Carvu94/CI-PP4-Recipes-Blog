@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
 from .models import Recipe, Category, Comment, Profile
-from .forms import CommentForm
+from .forms import CommentForm, ProfilePageForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -159,7 +159,8 @@ class EditComment(LoginRequiredMixin, UpdateView):
 #         user_form = UserUpdateForm(request.POST, istance=request.user)
 #         profile_form = ProfileUpdateForm(
 #             request.POST, request.FILES, instance=request.user.profile)
-        
+
+
 class ProfilePageView(DetailView):
     """
     Profile Page Veiw
@@ -181,6 +182,16 @@ class ProfilePageView(DetailView):
 #     model = Profile
 #     template_name = 'edit_profile.html'
 #     success_url = reverse_lazy('home')
+
+class CreateProfileView(LoginRequiredMixin, CreateView):
+    model = Profile
+    form_class = ProfilePageForm
+    template_name = 'create_profile.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
 @method_decorator(login_required, name='dispatch')
 class EditProfilePageView(LoginRequiredMixin, UpdateView):
