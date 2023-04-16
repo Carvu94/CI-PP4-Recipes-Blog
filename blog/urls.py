@@ -23,7 +23,7 @@ urlpatterns = [
           name='profile_page'),
      path('edit_profile/<int:pk>/', views.EditProfilePageView.as_view(),
           name='edit_profile'),
-     path('delete_profile/<int:profile_id>', views.delete_profile,
+     path('delete_profile/<int:pk>', views.DeleteUserProfile.as_view(),
           name='delete_profile'),
      path('create_profile', views.CreateProfileView.as_view(),
           name='create_profile'),

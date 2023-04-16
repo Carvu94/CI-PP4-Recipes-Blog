@@ -153,14 +153,6 @@ class EditComment(LoginRequiredMixin, UpdateView):
     form_class = CommentForm
 
 
-# @login_required
-# def ProfilePageView(request):
-#     if request.method == 'POST':
-#         user_form = UserUpdateForm(request.POST, istance=request.user)
-#         profile_form = ProfileUpdateForm(
-#             request.POST, request.FILES, instance=request.user.profile)
-
-
 class ProfilePageView(DetailView):
     """
     Profile Page Veiw
@@ -177,11 +169,6 @@ class ProfilePageView(DetailView):
         context["page_user"] = page_user
         return context
 
-
-# class EditProfilePageView(generic.CreateView):
-#     model = Profile
-#     template_name = 'edit_profile.html'
-#     success_url = reverse_lazy('home')
 
 class CreateProfileView(LoginRequiredMixin, CreateView):
     model = Profile
@@ -201,13 +188,13 @@ class EditProfilePageView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('home')
 
 
-@login_required
-def delete_profile(request, profile_id):
-    """
-    Delete profile
-    """
-    profile = get_object_or_404(Profile, id=profile_id)
-    profile.delete()
+class DeleteUserProfile(LoginRequiredMixin, DeleteView):
+    model = Profile
+    template_name = 'delete_profile.html'
+    form_class = ProfilePageForm
+    success_url = reverse_lazy('home')
 
-    return HttpResponseRedirect(reverse(
-        'home'))
+    def delete(self, request, *args, **kwargs):
+        user = self.get_object()
+        user.delete()
+        return HttpResponseRedirect(reverse('home'))
