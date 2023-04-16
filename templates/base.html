@@ -65,7 +65,7 @@
                     {% if user.is_authenticated %}
                     {% if user.profile.id %}
                     <li class="nav-item">
-                        <a href="{% url 'profile_page' user.id %}"><p class="nav-link">{{ user.username | slice:":10" }}</p></a>
+                        <a href="{% url 'profile_page' user.profile.id %}"><p class="nav-link">{{ user.username | slice:":10" }}</p></a>
                     </li>
 
                     {% else %}
