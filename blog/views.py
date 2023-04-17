@@ -31,6 +31,21 @@ def contact_us(request):
     return render(request, "contact.html")
 
 
+def search_results(request):
+    """
+    Search Recipes
+    """
+    if request.method == "POST":
+        searched = request.POST['searched']
+        recipes = Recipe.objects.filter(
+            title__icontains=searched)
+
+        return render(request, 'search_results.html',
+                      {'searched': searched, 'recipes': recipes})
+    else:
+        return render(request, 'search_results.html', {})
+
+
 class CategoriesList(generic.ListView):
     """
     Renders Categories page

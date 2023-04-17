@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Search Results</h1>
+
+    <div class="row">
+        <div class="col-md-8 m-auto text-center">
+            {% if searched %}
+            <h2 class="info-text">You Searched for <span class="text-success">"{{ searched }}"</span></h2>
+            <br>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 mt-3 left">
+
+                <div class="searched-results">
+                    {% for recipe in recipes %}
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="image-container">
+                                    {% if "placeholder" in recipe.featured_image.url %}
+                                    <img class="card-img-top" src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                                    {% else %}
+                                    <img class="card-img-top" src=" {{ recipe.featured_image.url }}">
+                                    {% endif %}
+                                    <div class="image-flash">
+                                        <p class="author">Author: {{ recipe.author }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{% url 'recipe_detail' recipe.slug %}" class="post-link">
+                                <h2 class="card-title">{{ recipe.title }}</h2>
+                                <p class="card-text">{{ recipe.excerpt }}</p>
+                            </a>
+                            <hr/>
+                            <p class="card-text text-muted h6">{{ recipe.created_on }} <i class="far fa-heart"></i>{{ recipe.number_of_likes }}</p>
+                        </div>
+                    <hr>
+                    {% empty %}
+                    <div class="results-null">
+                        <div class="row">
+                            <div class="col-md-12" style="text-align: center;">
+                                <h2>We Are Sorry</h2>
+                                <p>There is no search for <span class="text-success">"{{ searched }}"</span> on the website.</p>
+                                <p>Please try searching again</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="results-empty">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Oops...You forgot to search for a recipe... <br>Please try searching again...</h2>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+
+{% endblock %}

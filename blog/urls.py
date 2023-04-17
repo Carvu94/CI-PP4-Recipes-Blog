@@ -9,6 +9,8 @@ urlpatterns = [
      path('recipes/', views.RecipeList.as_view(), name="recipes"),
      path('categories/', views.CategoriesList.as_view(), name="categories"),
      path('contact', views.contact_us, name="contact"),
+     path('search_results', views.search_results,
+          name='search_results'),
      path('edit_recipe/<int:pk>', views.EditRecipeView.as_view(),
           name='edit_recipe'),
      path('delete_recipe/<int:pk>', views.DeleteRecipeView.as_view(),
@@ -28,6 +30,5 @@ urlpatterns = [
           name='delete_profile'),
      path('create_profile', views.CreateProfileView.as_view(),
           name='create_profile'),
-
 
 ]
