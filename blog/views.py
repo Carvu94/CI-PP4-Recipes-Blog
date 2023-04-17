@@ -18,6 +18,12 @@ class HomeView(generic.ListView):
     queryset = Recipe.objects.filter(status=1).order_by('likes')[:3]
     template_name = 'index.html'
 
+    # def get_context_data(self, *args, **kwargs):
+    #     cat_menu = Category.objects.all()
+    #     context = super(HomeView, self).get_context_data(*args, **kwargs)
+    #     context["cat_menu"] = cat_menu
+    #     return context
+
 
 def about(request):
     """
@@ -54,6 +60,16 @@ class CategoriesList(generic.ListView):
     """
     model = Category
     template_name = 'categories.html'
+
+
+def categories_view(request, cats):
+    """
+    Renders the posts filtered by categories
+    """
+    categories_recipes = Recipe.objects.filter(
+        categories__title__contains=cats)
+    return render(request, 'categories_recipes.html', {
+        'cats': cats.title(), 'categories_recipes': categories_recipes})
 
 
 class RecipeList(generic.ListView):

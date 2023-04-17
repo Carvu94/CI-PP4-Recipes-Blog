@@ -28,7 +28,7 @@
                 </p>
             </div>
             {% if user.is_authenticated %}
-                {% if user.id == profile.user.id %}
+                {% if user.id == profile.user.id %}            
                 <a href="{% url 'edit_profile' profile.id %}"
                 class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Profile Page">Edit Profile</a>
                 <a href="{% url 'delete_profile' profile.id %}"

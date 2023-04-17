@@ -50,13 +50,10 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{% url 'categories' %}">Categories</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Category1</a></li>
-                            <li><a class="dropdown-item" href="#">Category2</a></li>
-                            <li><a class="dropdown-item" href="#">Category3</a></li>
-                            <li><a class="dropdown-item" href="#">Category4</a></li>
-                            <li><a class="dropdown-item" href="#">Category5</a></li>
-                            <li><a class="dropdown-item" href="#">Category6</a></li>
-                            <li><a class="dropdown-item" href="#">Category7</a></li>
+                            
+                            {% for item in cat_menu %}
+                            <li><a class="dropdown-item" href="{% url 'categories_posts' category.title %}">{{ item }}</a></li>
+                            {% endfor %}
                         </ul>                 
                     </li>
                     <li class="nav-item">

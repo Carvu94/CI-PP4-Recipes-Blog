@@ -1,21 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% for category in object_list %}
-    <div class="container-lg categories-cont row">
-        <div class="card text-white">
-            {% if 'placeholder' in category.category_image.url %}
-            <img src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img" alt="...">
-            {% else %}
-            <img src="{{ category.category_image.url }}" class="card-img" alt="...">
-            {% endif %}
-            <a href="#">
-                <div class="card-img-overlay category-title">
-                    <h5 class="card-title">{{ category.title }}</h5>
+<section id="content" class="content">
+    <h2 class="title">Categories</h2>
+    <div class="container box-shadow">
+        <div class="row">
+            {{ cats }}
+            {% for category in object_list %}
+            <div class="container-lg categories-cont row">
+                <div class="card text-white">
+                    {% if 'placeholder' in category.category_image.url %}
+                    <img src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img" alt="...">
+                    {% else %}
+                    <img src="{{ category.category_image.url }}" class="card-img" alt="...">
+                    {% endif %}
+                    <a href="{% url 'categories_recipes' category.title %}">
+                        <div class="card-img-overlay category-title">
+                            <h5 class="card-title">{{ category.title }}</h5>
+                        </div>
+                    </a>
                 </div>
-            </a>
+            </div>            
+            {% endfor%}
         </div>
     </div>
-    {% endfor %}
-
+</section>
 {% endblock %}
