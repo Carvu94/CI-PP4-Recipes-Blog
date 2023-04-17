@@ -10,11 +10,13 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 
 
-def home(request):
+class HomeView(generic.ListView):
     """
-    Renders Home page
+    Renders the Home page
     """
-    return render(request, "index.html")
+    model = Recipe
+    queryset = Recipe.objects.filter(status=1).order_by('likes')[:3]
+    template_name = 'index.html'
 
 
 def about(request):
