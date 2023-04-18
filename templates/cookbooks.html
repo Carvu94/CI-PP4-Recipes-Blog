@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-title">
+    <div>
+        <h1>Cookbooks</h1>
+    </div>
+    <div>
+        <p>Check out these amazing cookbooks, and create your own.</p>
+    </div>
+    <div>
+        <a href="#" class="btn btn-info">Create your Cookbook here</a>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-12 mt-3 left">
+            <div class="row">
+            {% for cookbook in cookbook_list %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <a href="#" class="post-link">
+                            <h2 class="card-title">{{ cookbook.title }}</h2>
+                            <p class="card-text">{{ cookbook.excerpt }}</p>
+                        </a>
+                        <hr/>
+                        <p class="card-text text-muted h6">{{ cookbook.created_on }}</p>
+                    </div>
+                    <!-- Edit/Delete Recipe -->
+                    {% if user.is_authenticated and user.id == cookbook.author.id or user.is_superuser %}
+
+                    <a href="#" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Cookbook Page">Edit</a>
+                    <a href="#" class="btn btn-danger" aria-label="Go to the Delete Cookbook Page">Delete</a>
+                    
+                    {% endif %}
+                </div>
+            {% if forloop.counter|divisibleby:3 %}
+            </div>
+            <div class="row">
+            {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a>
+            </li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li>
+                <a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+
+{%endblock%}

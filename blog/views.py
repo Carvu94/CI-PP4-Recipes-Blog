@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
-from .models import Recipe, Category, Comment, Profile
+from .models import Recipe, Category, Comment, Profile, Cookbook
 from .forms import CommentForm, ProfilePageForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -70,6 +70,16 @@ def categories_view(request, cats):
         categories__title__contains=cats)
     return render(request, 'categories_recipes.html', {
         'cats': cats.title(), 'categories_recipes': categories_recipes})
+
+
+class CookbookList(generic.ListView):
+    """
+    Renders the cookbook page
+    """
+    model = Cookbook
+    queryset = Cookbook.objects.all().order_by('-created_on')
+    template_name = 'cookbooks.html'
+    paginate_by = 6
 
 
 class RecipeList(generic.ListView):
