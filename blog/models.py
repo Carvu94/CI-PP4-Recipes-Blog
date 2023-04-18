@@ -110,3 +110,25 @@ class Cookbook(models.Model):
 
     def get_absolute_url(self):
         return reverse('cookbooks')
+
+
+class CookbookComment(models.Model):
+    """
+    Model for cookbook comments
+    """
+    cookbook = models.ForeignKey(
+        Cookbook, on_delete=models.CASCADE, related_name='book_comments')
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="book_comments")
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return f"Comment {self.body} by {self.author}"
+
+    def get_absolute_url(self):
+        return reverse('cookbook_detail', args=[self.cookbook.id])
