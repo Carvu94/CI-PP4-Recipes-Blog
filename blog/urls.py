@@ -11,6 +11,8 @@ urlpatterns = [
      path('cookbooks/', views.CookbookList.as_view(), name="cookbooks"),
      path('cookbook/<int:id>/', views.CookbookDetail.as_view(),
           name="cookbook_detail"),
+     path('like/<int:id>/', views.CookbookLike.as_view(),
+          name='cookbook_like'),
      path('categories/', views.CategoriesList.as_view(), name="categories"),
      path('categories_recipes/<str:cats>', views.categories_view,
           name="categories_recipes"),

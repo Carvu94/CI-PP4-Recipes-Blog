@@ -22,14 +22,26 @@
             {% for cookbook in cookbook_list %}
                 <div class="col-md-4">
                     <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="image-container">
+                                {% if "placeholder" in cookbook.featured_image.url %}
+                                <img class="card-img-top" src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                                {% else %}
+                                <img class="card-img-top" src=" {{ cookbook.featured_image.url }}">
+                                {% endif %}
+                                <div class="image-flash">
+                                    <p class="author">Author: {{ cookbook.author }}</p>
+                                </div>
+                            </div>
+                        </div>
                         <a href="{% url 'cookbook_detail' cookbook.id %}" class="post-link">
                             <h2 class="card-title">{{ cookbook.title }}</h2>
-                            <p class="card-text">{{ cookbook.excerpt }}</p>
+                            <p class="card-text">{{ cookbook.content }}</p>
                         </a>
                         <hr/>
-                        <p class="card-text text-muted h6">{{ cookbook.created_on }}</p>
-                    </div>
-                    <!-- Edit/Delete Recipe -->
+                        <p class="">{{ cookbook.created_on }} <i class="far fa-heart"></i>{{ cookbook.number_of_likes }}</p>
+                    </div>                    
+                    <!-- Edit/Delete Cookbook -->
                     {% if user.is_authenticated and user.id == cookbook.author.id or user.is_superuser %}
 
                     <a href="#" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Cookbook Page">Edit</a>

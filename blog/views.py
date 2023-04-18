@@ -3,6 +3,7 @@ from django.views import generic, View
 from .models import Recipe, Category, Comment, Profile, Cookbook
 from .forms import CommentForm, ProfilePageForm, BookCommentForm
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic import UpdateView, CreateView, DeleteView, DetailView
@@ -106,7 +107,7 @@ class CookbookDetail(View):
                 # "comments": comments,
                 # "commented": False,
                 "liked": liked,
-                "comment_form": BookCommentForm()
+                # "comment_form": BookCommentForm()
             },
         )
 
@@ -141,9 +142,24 @@ class CookbookDetail(View):
                 # "comments": comments,
                 # "commented": True,
                 "liked": liked,
-                "comment_form": BookCommentForm()
+                # "comment_form": BookCommentForm()
             },
         )
+
+
+class CookbookLike(LoginRequiredMixin, View):
+    """
+    Like Cookbook
+    """
+    def post(self, request, id, *args, **kwargs):
+        book = get_object_or_404(Cookbook, id=id)
+
+        if book.likes.filter(id=request.user.id).exists():
+            book.likes.remove(request.user)
+        else:
+            book.likes.add(request.user)
+
+        return HttpResponseRedirect(reverse('cookbook_detail', args=[id]))
 
 
 class RecipeList(generic.ListView):

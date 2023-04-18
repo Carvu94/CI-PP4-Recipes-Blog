@@ -26,10 +26,52 @@
             </div>
         </div>
     </div>
-    <h5>{{ cookbook.content }}</h5>
-
-
-    <div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col card mb-4  mt-3 left  top">
+                <div class="card-body">
+                    <!-- Cookbook content -->
+                    <p class="card-text ">{{ cookbook.content | safe }}</p>
+                    <div class="row">
+                        <!-- Likes -->
+                        <div class="col-1">
+                            <strong>
+                                {% if user.is_authenticated %}
+                                <form action="{% url 'cookbook_like' cookbook.id %}" class="d-inline" method="POST">
+                                    {% csrf_token %}
+                                    {% if liked %}
+    
+                                    <button type="submit" name="cookbook_id" value="{{cookbook.id}}" class="btn-like"><i class="fas fa-heart"></i></button>
+                                    {% else %}
+                                    <button type="submit" name="cookbook_id" value="{{cookbook.id}}" class="btn-like"><i class="far fa-heart"></i></button>
+                                    {% endif %}
+                                </form>
+                                {% else %}
+    
+                                <span class="text-secondary"><i class="far fa-heart"></i></span>
+    
+                                {% endif %}
+                                <span class="text-secondary">{{ cookbook.number_of_likes }}</span>
+                            </strong>
+                        </div>
+    
+                    </div>
+                    <!-- Edit/Delete Recipe -->
+                    {% if user.is_authenticated and user.id == recipe.author.id or user.is_superuser %}
+    
+                    <a href="{% url 'edit_recipe' recipe.id %}" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Recipe Page">Edit</a>
+                    <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-danger" aria-label="Go to the Delete Recipe Page">Delete</a>
+    
+                    {% endif %}
+    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr>
+            </div>
+        </div>    <div class="container-fluid">
         <div class="row">
 
             <!-- Blog Entries Column -->
