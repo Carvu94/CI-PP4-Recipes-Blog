@@ -2,148 +2,165 @@
 
 {% load crispy_forms_tags %}
 
-<div class="masthead">
-    <div class="row">
-        <div class="row g-0">
-            <div class="col-md-6 masthead-text">
-                <!-- cookbook title -->
-                <h1 class="post-title">{{ cookbook.title }}
-                </h1>
-                <!-- cookbook author and created date -->
-                <a href="{% url 'profile_page' cookbook.author.profile.id %}">
-                    <p class="post-subtitle">{{ cookbook.author }}</p>
-                </a>
-                <p class="post-subtitle">{{ cookbook.created_on }}</p>
+    <div class="masthead">
+        <div class="row">
+            <div class="row g-0">
+                <div class="col-md-6 masthead-text">
+                    <!-- Cookbook title -->
+                    <h1 class="post-title">{{ cookbook.title }}
+                    </h1>
+                    <!-- cookbook author and created date -->
+                    <a href="{% url 'profile_page' cookbook.author.profile.id %}">
+                        <p class="post-subtitle">{{ cookbook.author }}</p>
+                    </a>
+                    <p class="post-subtitle">{{ cookbook.created_on }}</p>
+                </div>
+                <div class="d-none d-md-block col-md-6 masthead-image">
+                    <!-- The featured image URL goes in the src attribute -->
+                    {% if "placeholder" in cookbook.featured_image.url %}
+                    <img src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width="100%">
+                    {% else %}
+                    <img src="" width="100%">
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="container">
-    <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
-            <div class="card-body">
-                <!-- cookbook content -->
-                <p class="card-text ">{{ cookbook.content | safe }}</p>
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-12 mt-3 left">
                 <div class="row">
-                    <!-- Likes -->
-                    <div class="col-1">
-                        <strong>
-                            {% if user.is_authenticated %}
-                            <form action="{% url 'recipe_like' cookbook.id %}" class="d-inline" method="POST">
-                                {% csrf_token %}
-                                {% if liked %}
-
-                                <button type="submit" name="blogpost_id" value="{{cookbook.id}}" class="btn-like"><i class="fas fa-heart"></i></button>
-                                {% else %}
-                                <button type="submit" name="blogpost_id" value="{{cookbook.id}}" class="btn-like"><i class="far fa-heart"></i></button>
-                                {% endif %}
-                            </form>
-                            {% else %}
-
-                            <span class="text-secondary"><i class="far fa-heart"></i></span>
-
-                            {% endif %}
-                            <span class="text-secondary">{{ cookbook.number_of_likes }}</span>
-                        </strong>
-                    </div>
-
-                    <div class="col-1">
-                        {% with comments.count as total_comments %}
-                        <strong class="text-secondary"><i class="far fa-comments"></i>
-                            <!-- total comments -->
-                        {{ total_comments }}</strong>
-                        {% endwith %}
-                    </div>
-                </div>
-                <!-- Edit/Delete Recipe -->
-                {% if user.is_authenticated and user.id == cookbook.author.id or user.is_superuser %}
-
-                <a href="#" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Recipe Page">Edit</a>
-                <a href="#" class="btn btn-danger" aria-label="Go to the Delete Recipe Page">Delete</a>
-
-                {% endif %}
-
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <hr>
-        </div>
-    </div>
-    <!-- Comments -->
-    <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
-            <h3>Comments:</h3>
-            <div class="card-body">
-                <!-- for loop to display all comments -->
-                {% for comment in comments %}
-                <div class="comments" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        <!-- comment name -->
-                        {{ comment.name }}
-                        <span class=" text-muted font-weight-normal">
-                            <!-- comment created date -->
-                            {{ comment.created_on }}
-                        </span> wrote:
-                    </p>
-                    <!-- comment body -->
-                    {{ comment.body | linebreaks }}
-                </div>
-                <!-- Edit/Delete comment -->
-                {% if user.is_authenticated and user.username == comment.name or user.is_superuser %}
-                <a href="{% url 'edit_comment' comment.id %}" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Comments Page">Edit</a>
-                    <button type="button" class="btn-delete btn-sm btn-danger mb-3" data-bs-toggle="modal"
-                        data-bs-target="#delete-comment">Delete</button>
-                <div class="modal fade" id="delete-comment"
-                        tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">Delete Comment</h5>
-                                </div>
-                                <div class="modal-body">
-                                    Are you sure you want to delete your comment?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <a href="{% url 'delete_comment' comment.id %}" class="btn btn-danger" aria-label="Delete Comment">Delete</a>
+                {% for recipe in recipes %}
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="image-container">
+                                    {% if "placeholder" in recipe.featured_image.url %}
+                                    <img class="card-img-top" src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                                    {% else %}
+                                    <img class="card-img-top" src=" {{ recipe.featured_image.url }}">
+                                    {% endif %}
+                                    <div class="image-flash">
+                                        <p class="author">Author: {{ recipe.author }}</p>
+                                    </div>
                                 </div>
                             </div>
+                            <a href="{% url 'recipe_detail' recipe.slug %}" class="post-link">
+                                <h2 class="card-title">{{ recipe.title }}</h2>
+                                <p class="card-text">{{ recipe.excerpt }}</p>
+                            </a>
+                            <hr/>
+                            <p class="card-text text-muted h6">{{ recipe.created_on }} <i class="far fa-heart"></i>{{ recipe.number_of_likes }}</p>
                         </div>
+                        <!-- Edit/Delete Recipe -->
+                        {% if user.is_authenticated and user.id == recipe.author.id or user.is_superuser %}
+
+                        <a href="{% url 'edit_recipe' recipe.id %}" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Recipe Page">Edit</a>
+                        <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-danger" aria-label="Go to the Delete Recipe Page">Delete</a>
+                        
+                        {% endif %}
+                    </div>
+                {% if forloop.counter|divisibleby:3 %}
                 </div>
+                <div class="row">
                 {% endif %}
-                <hr>
                 {% endfor %}
-            </div>
-        </div>
-    </div>
-    <!-- Add comments -->
-        <div class="col-md-4 card mb-4 mt-3 comment-card">
-            <div class="card-body">
-                {% if commented %}
-                <div class="alert alert-success" role="alert">
-                    Your comment is awaiting approval
                 </div>
-                {% else %}
-
-                {% if user.is_authenticated %}
-
-                <h3>Leave a comment:</h3>
-                <p>Posting as: {{ user.username }}</p>
-                <form method="post" style="margin-top: 1.3em;">
-                    {{ comment_form | crispy }}
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-signup btn-lg">Comment</button>
-                </form>
-
-                {% endif %}
-                {% endif %}
-
             </div>
         </div>
-</div>
+        {% if is_paginated %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a>
+                </li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                <li>
+                    <a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+
+    <!-- Comments -->
+        <div class="row">
+            <div class="col-md-8 card mb-4  mt-3 ">
+                <h3>Comments:</h3>
+                <div class="card-body">
+                    <!-- for loop to display all comments -->
+                    {% for blog_comment in blog_comments %}
+                    <div class="comments" style="padding: 10px;">
+                        <p class="font-weight-bold">
+                            <!-- comment name -->
+                            {{ blog_comment.name }}
+                            <span class=" text-muted font-weight-normal">
+                                <!-- comment created date -->
+                                {{ blog_comment.created_on }}
+                            </span> wrote:
+                        </p>
+                        <!-- comment body -->
+                        {{ blog_comment.body | linebreaks }}
+                    </div>
+                    <!-- Edit/Delete comment -->
+                    {% if user.is_authenticated and user.username == blog_comment.name or user.is_superuser %}
+                    <a href="#" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Comments Page">Edit</a>
+                        <button type="button" class="btn-delete btn-sm btn-danger mb-3" data-bs-toggle="modal"
+                            data-bs-target="#delete-comment">Delete</button>
+                    <div class="modal fade" id="delete-comment"
+                            tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Delete Comment</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete your comment?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <a href="#" class="btn btn-danger" aria-label="Delete Comment">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    {% endif %}
+                    <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Add comments -->
+            <div class="col-md-4 card mb-4 mt-3 comment-card">
+                <div class="card-body">
+                    {% if commented %}
+                    <div class="alert alert-success" role="alert">
+                        Your comment is awaiting approval
+                    </div>
+                    {% else %}
+
+                    {% if user.is_authenticated %}
+
+                    <h3>Leave a comment:</h3>
+                    <p>Posting as: {{ user.username }}</p>
+                    <form method="post" style="margin-top: 1.3em;">
+                        {{ comment_form | crispy }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-signup btn-lg">Comment</button>
+                    </form>
+
+                    {% endif %}
+                    {% endif %}
+
+                </div>
+            </div>
+    </div>
 
 {% endblock content %}

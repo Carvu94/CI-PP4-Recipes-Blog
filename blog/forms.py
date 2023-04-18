@@ -1,10 +1,16 @@
-from .models import Comment, Profile
+from .models import Comment, Profile, CookbookComment
 from django import forms
 
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
+        fields = ('body',)
+
+
+class BookCommentForm(forms.ModelForm):
+    class Meta:
+        model = CookbookComment
         fields = ('body',)
 
 

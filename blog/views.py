@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
 from .models import Recipe, Category, Comment, Profile, Cookbook
-from .forms import CommentForm, ProfilePageForm
+from .forms import CommentForm, ProfilePageForm, BookCommentForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -77,7 +77,7 @@ class CookbookList(generic.ListView):
     Renders the cookbook page
     """
     model = Cookbook
-    queryset = Cookbook.objects.all().order_by('-created_on')
+    queryset = Cookbook.objects.filter(status=1).order_by('-created_on')
     template_name = 'cookbooks.html'
     paginate_by = 6
 
@@ -87,55 +87,61 @@ class CookbookDetail(View):
     Renders the cookbook detail page
     """
     def get(self, request, id, *args, **kwargs):
-        queryset = Cookbook.objects.all()
-        cookbook = get_object_or_404(queryset, id=id)
-        # comments = cookbook.comments.filter(approved=True).order_by(
-        #     'created_on')
-        # liked = False
-        # if cookbook.likes.filter(id=self.request.user.id).exists():
-            # liked = True
+        cookbook = Cookbook.objects.get(id=id)
+        recipes = cookbook.recipes.all()
+        # queryset = Cookbook.objects.filter(status=1)
+        # cookbook = get_object_or_404(queryset, id=id)
+        comments = cookbook.book_comments.filter(approved=True).order_by(
+            'created_on')
+        liked = False
+        if cookbook.likes.filter(id=self.request.user.id).exists():
+            liked = True
 
         return render(
             request,
             "cookbook_detail.html",
             {
                 "cookbook": cookbook,
-                # "comments": comments,
+                "recipes": recipes,
+                "comments": comments,
                 "commented": False,
-                # "liked": liked,
-                "comment_form": CommentForm()
+                "liked": liked,
+                "comment_form": BookCommentForm()
             },
         )
 
-    def post(self, request, slug, *args, **kwargs):
-        queryset = Cookbook.objects.filter(status=1)
-        cookbook = get_object_or_404(queryset, slug=slug)
-        # comments = cookbook.comments.filter(approved=True).order_by(
-        #     'created_on')
-        # liked = False
-        # if cookbook.likes.filter(id=self.request.user.id).exists():
-        #     liked = True
+    def post(self, request, id, *args, **kwargs):
+        cookbook = Cookbook.objects.get(id=id)
+        recipes = cookbook.recipes.all()
+        # queryset = Cookbook.objects.filter(status=1)
+        # cookbook = get_object_or_404(queryset, id=id)
+        comments = cookbook.book_comments.filter(approved=True).order_by(
+            'created_on')
+        liked = False
+        if cookbook.likes.filter(id=self.request.user.id).exists():
+            liked = True
 
-        # comment_form = CommentForm(data=request.POST)
+        # comment_form = BookCommentForm(data=request.POST)
 
         # if comment_form.is_valid():
         #     comment_form.instance.email = request.user.email
         #     comment_form.instance.name = request.user.username
         #     comment = comment_form.save(commit=False)
-        #     comment.post = cookbook
+        #     comment.cookbook = cookbook
         #     comment.save()
         # else:
-        #     comment_form = CommentForm()
+        #     comment_form = BookCommentForm()
 
         return render(
             request,
             "cookbook_detail.html",
             {
                 "cookbook": cookbook,
-                # "comments": comments,
+                "recipes": recipes,
+                "comments": comments,
                 "commented": True,
-                # "liked": liked,
-                # "comment_form": CommentForm()
+                "liked": liked,
+                "comment_form": BookCommentForm()
             },
         )
 

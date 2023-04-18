@@ -101,6 +101,7 @@ class Cookbook(models.Model):
     approved = models.BooleanField(default=False)
     featured_image = CloudinaryField('image', default='placeholder')
     likes = models.ManyToManyField(User, related_name='book_likes', blank=True)
+    status = models.IntegerField(choices=STATUS, default=0)
 
     class Meta:
         ordering = ['-created_on']
