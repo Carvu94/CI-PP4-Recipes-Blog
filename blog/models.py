@@ -96,9 +96,11 @@ class Cookbook(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=200, unique=True)
     content = models.TextField(default='')
-    recipes = models.ForeignKey(
-        Recipe, on_delete=models.CASCADE, related_name='book')
+    recipes = models.ManyToManyField(Recipe, related_name='book_likes',
+                                     blank=True)
     approved = models.BooleanField(default=False)
+    featured_image = CloudinaryField('image', default='placeholder')
+    likes = models.ManyToManyField(User, related_name='book_likes', blank=True)
 
     class Meta:
         ordering = ['-created_on']
@@ -107,4 +109,4 @@ class Cookbook(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('home')
+        return reverse('cookbooks')

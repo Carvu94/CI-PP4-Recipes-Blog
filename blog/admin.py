@@ -46,6 +46,6 @@ class CookbookAdmin(admin.ModelAdmin):
     """
     Add fields for Cookbook in admin panel
     """
-    list_display = ('author', 'created_on', 'title', 'recipes', 'approved')
+    list_display = ('author', 'created_on', 'title', 'approved')
     list_filter = ('approved', 'created_on')
     search_fields = ['author', 'title']
