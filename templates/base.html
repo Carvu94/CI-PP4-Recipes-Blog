@@ -51,8 +51,8 @@
                             <li><a class="dropdown-item" href="{% url 'categories' %}">Categories</a></li>
                             <li><hr class="dropdown-divider"></li>
                             
-                            {% for item in cat_menu %}
-                            <li><a class="dropdown-item" href="{% url 'categories_posts' category.title %}">{{ item }}</a></li>
+                            {% for category in category_list %}
+                            <li><a class="dropdown-item" href="{% url 'categories_recipes' category.title %}">{{ category.title }}</a></li>
                             {% endfor %}
                         </ul>                 
                     </li>

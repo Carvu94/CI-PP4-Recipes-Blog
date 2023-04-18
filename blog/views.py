@@ -19,7 +19,7 @@ class HomeView(generic.ListView):
     template_name = 'index.html'
 
     # def get_context_data(self, *args, **kwargs):
-    #     cat_menu = Category.objects.all()
+    #     cat_menu = Category.objects.filter('title')
     #     context = super(HomeView, self).get_context_data(*args, **kwargs)
     #     context["cat_menu"] = cat_menu
     #     return context
