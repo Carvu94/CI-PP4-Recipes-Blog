@@ -26,6 +26,8 @@
             </div>
         </div>
     </div>
+    <h5>{{ cookbook.content }}</h5>
+
 
     <div class="container-fluid">
         <div class="row">
@@ -87,80 +89,6 @@
             </ul>
         </nav>
         {% endif %}
-    </div>
-
-    <!-- Comments -->
-        <div class="row">
-            <div class="col-md-8 card mb-4  mt-3 ">
-                <h3>Comments:</h3>
-                <div class="card-body">
-                    <!-- for loop to display all comments -->
-                    {% for blog_comment in blog_comments %}
-                    <div class="comments" style="padding: 10px;">
-                        <p class="font-weight-bold">
-                            <!-- comment name -->
-                            {{ blog_comment.name }}
-                            <span class=" text-muted font-weight-normal">
-                                <!-- comment created date -->
-                                {{ blog_comment.created_on }}
-                            </span> wrote:
-                        </p>
-                        <!-- comment body -->
-                        {{ blog_comment.body | linebreaks }}
-                    </div>
-                    <!-- Edit/Delete comment -->
-                    {% if user.is_authenticated and user.username == blog_comment.name or user.is_superuser %}
-                    <a href="#" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Comments Page">Edit</a>
-                        <button type="button" class="btn-delete btn-sm btn-danger mb-3" data-bs-toggle="modal"
-                            data-bs-target="#delete-comment">Delete</button>
-                    <div class="modal fade" id="delete-comment"
-                            tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Delete Comment</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        Are you sure you want to delete your comment?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <a href="#" class="btn btn-danger" aria-label="Delete Comment">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    {% endif %}
-                    <hr>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        <!-- Add comments -->
-            <div class="col-md-4 card mb-4 mt-3 comment-card">
-                <div class="card-body">
-                    {% if commented %}
-                    <div class="alert alert-success" role="alert">
-                        Your comment is awaiting approval
-                    </div>
-                    {% else %}
-
-                    {% if user.is_authenticated %}
-
-                    <h3>Leave a comment:</h3>
-                    <p>Posting as: {{ user.username }}</p>
-                    <form method="post" style="margin-top: 1.3em;">
-                        {{ comment_form | crispy }}
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-signup btn-lg">Comment</button>
-                    </form>
-
-                    {% endif %}
-                    {% endif %}
-
-                </div>
-            </div>
     </div>
 
 {% endblock content %}

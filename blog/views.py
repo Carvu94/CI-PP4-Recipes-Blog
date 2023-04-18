@@ -91,8 +91,8 @@ class CookbookDetail(View):
         recipes = cookbook.recipes.all()
         # queryset = Cookbook.objects.filter(status=1)
         # cookbook = get_object_or_404(queryset, id=id)
-        comments = cookbook.book_comments.filter(approved=True).order_by(
-            'created_on')
+        # comments = cookbook.cookbooks.filter(approved=True).order_by(
+        #     'created_on')
         liked = False
         if cookbook.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -103,8 +103,8 @@ class CookbookDetail(View):
             {
                 "cookbook": cookbook,
                 "recipes": recipes,
-                "comments": comments,
-                "commented": False,
+                # "comments": comments,
+                # "commented": False,
                 "liked": liked,
                 "comment_form": BookCommentForm()
             },
@@ -115,8 +115,8 @@ class CookbookDetail(View):
         recipes = cookbook.recipes.all()
         # queryset = Cookbook.objects.filter(status=1)
         # cookbook = get_object_or_404(queryset, id=id)
-        comments = cookbook.book_comments.filter(approved=True).order_by(
-            'created_on')
+        # comments = cookbook.cookbooks.filter(approved=True).order_by(
+        #     'created_on')
         liked = False
         if cookbook.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -138,8 +138,8 @@ class CookbookDetail(View):
             {
                 "cookbook": cookbook,
                 "recipes": recipes,
-                "comments": comments,
-                "commented": True,
+                # "comments": comments,
+                # "commented": True,
                 "liked": liked,
                 "comment_form": BookCommentForm()
             },
