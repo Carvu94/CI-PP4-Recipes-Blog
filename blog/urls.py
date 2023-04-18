@@ -9,6 +9,8 @@ urlpatterns = [
      path('about', views.about, name="about"),
      path('recipes/', views.RecipeList.as_view(), name="recipes"),
      path('cookbooks/', views.CookbookList.as_view(), name="cookbooks"),
+     path('cookbook/<int:id>/', views.CookbookDetail.as_view(),
+          name="cookbook_detail"),
      path('categories/', views.CategoriesList.as_view(), name="categories"),
      path('categories_recipes/<str:cats>', views.categories_view,
           name="categories_recipes"),

@@ -82,6 +82,64 @@ class CookbookList(generic.ListView):
     paginate_by = 6
 
 
+class CookbookDetail(View):
+    """
+    Renders the cookbook detail page
+    """
+    def get(self, request, id, *args, **kwargs):
+        queryset = Cookbook.objects.all()
+        cookbook = get_object_or_404(queryset, id=id)
+        # comments = cookbook.comments.filter(approved=True).order_by(
+        #     'created_on')
+        # liked = False
+        # if cookbook.likes.filter(id=self.request.user.id).exists():
+            # liked = True
+
+        return render(
+            request,
+            "cookbook_detail.html",
+            {
+                "cookbook": cookbook,
+                # "comments": comments,
+                "commented": False,
+                # "liked": liked,
+                "comment_form": CommentForm()
+            },
+        )
+
+    def post(self, request, slug, *args, **kwargs):
+        queryset = Cookbook.objects.filter(status=1)
+        cookbook = get_object_or_404(queryset, slug=slug)
+        # comments = cookbook.comments.filter(approved=True).order_by(
+        #     'created_on')
+        # liked = False
+        # if cookbook.likes.filter(id=self.request.user.id).exists():
+        #     liked = True
+
+        # comment_form = CommentForm(data=request.POST)
+
+        # if comment_form.is_valid():
+        #     comment_form.instance.email = request.user.email
+        #     comment_form.instance.name = request.user.username
+        #     comment = comment_form.save(commit=False)
+        #     comment.post = cookbook
+        #     comment.save()
+        # else:
+        #     comment_form = CommentForm()
+
+        return render(
+            request,
+            "cookbook_detail.html",
+            {
+                "cookbook": cookbook,
+                # "comments": comments,
+                "commented": True,
+                # "liked": liked,
+                # "comment_form": CommentForm()
+            },
+        )
+
+
 class RecipeList(generic.ListView):
     """
     Renders the recipes page
