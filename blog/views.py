@@ -162,6 +162,16 @@ class CookbookLike(LoginRequiredMixin, View):
         return HttpResponseRedirect(reverse('cookbook_detail', args=[id]))
 
 
+class AddCookbookView(generic.CreateView):
+    model = Cookbook
+    template_name = 'add_cookbook.html'
+    fields = (
+        'title',
+        'content',
+        'recipes',
+        'featured_image')
+
+
 class RecipeList(generic.ListView):
     """
     Renders the recipes page
@@ -172,6 +182,7 @@ class RecipeList(generic.ListView):
     paginate_by = 6
 
 
+@method_decorator(login_required, name='dispatch')
 class AddRecipeView(generic.CreateView):
     model = Recipe
     template_name = 'add_recipe.html'

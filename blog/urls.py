@@ -13,6 +13,8 @@ urlpatterns = [
           name="cookbook_detail"),
      path('like/<int:id>/', views.CookbookLike.as_view(),
           name='cookbook_like'),
+     path('add_cookbook/', views.AddCookbookView.as_view(),
+          name='add_cookbook'),
      path('categories/', views.CategoriesList.as_view(), name="categories"),
      path('categories_recipes/<str:cats>', views.categories_view,
           name="categories_recipes"),
