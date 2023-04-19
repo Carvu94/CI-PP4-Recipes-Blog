@@ -36,8 +36,8 @@
                         <!-- Edit/Delete Recipe -->
                         {% if user.is_authenticated and user.id == recipe.author.id or user.is_superuser %}
 
-                        <a href="{% url 'edit_recipe' recipe.id %}" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Recipe Page">Edit</a>
-                        <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-danger" aria-label="Go to the Delete Recipe Page">Delete</a>
+                        <a href="{% url 'edit_recipe' recipe.id %}" class="btn btn-outline-secondary" aria-label="Go to the Edit Recipe Page">Edit</a>
+                        <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-outline-danger" aria-label="Go to the Delete Recipe Page">Delete</a>
                         
                         {% endif %}
                     </div>
@@ -54,12 +54,12 @@
             <ul class="pagination justify-content-center">
                 {% if page_obj.has_previous %}
                 <li>
-                    <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-info">&laquo; PREV </a>
                 </li>
                 {% endif %}
                 {% if page_obj.has_next %}
                 <li>
-                    <a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a>
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info"> NEXT &raquo;</a>
                 </li>
                 {% endif %}
             </ul>

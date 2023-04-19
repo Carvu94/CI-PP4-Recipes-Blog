@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
 from .models import Recipe, Category, Comment, Profile, Cookbook
-from .forms import CommentForm, ProfilePageForm, BookCommentForm
+from .forms import CommentForm, ProfilePageForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -168,7 +168,7 @@ class AddCookbookView(generic.CreateView):
     fields = (
         'title',
         'content',
-        'recipes',
+        # 'recipes',
         'featured_image')
 
 
@@ -185,10 +185,12 @@ class RecipeList(generic.ListView):
 @method_decorator(login_required, name='dispatch')
 class AddRecipeView(generic.CreateView):
     model = Recipe
+    # form_class = AddRecipeForm
+    # fields = '__all__'
     template_name = 'add_recipe.html'
     fields = (
         'title',
-        'author',
+        # 'author',
         'content',
         'featured_image',
         'categories',

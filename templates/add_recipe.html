@@ -3,11 +3,12 @@
 {% block content %}
 
 <h1>Add recipe</h1>
-
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-info" value="Save">Add Recipe</button>
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-outline-primary" value="Save">Add Recipe</button>
+</div>
 </form>
 
 {% endblock %}

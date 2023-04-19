@@ -81,7 +81,7 @@ class Comment(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     bio = models.TextField()
-    image = CloudinaryField('image', default='placeholder')
+    image = CloudinaryField('profile_image', default='placeholder')
 
     def __str__(self):
         return str(self.user)
@@ -92,11 +92,11 @@ class Profile(models.Model):
 
 class Cookbook(models.Model):
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="cookbooks")
+        User, on_delete=models.CASCADE, related_name="book_author")
     created_on = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=200, unique=True)
     content = models.TextField(default='')
-    recipes = models.ManyToManyField(Recipe, related_name='book_likes',
+    recipes = models.ManyToManyField(Recipe, related_name='book_recipes',
                                      blank=True)
     approved = models.BooleanField(default=False)
     featured_image = CloudinaryField('image', default='placeholder')

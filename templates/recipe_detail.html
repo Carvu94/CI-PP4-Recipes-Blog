@@ -67,8 +67,8 @@
                 <!-- Edit/Delete Recipe -->
                 {% if user.is_authenticated and user.id == recipe.author.id or user.is_superuser %}
 
-                <a href="{% url 'edit_recipe' recipe.id %}" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Recipe Page">Edit</a>
-                <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-danger" aria-label="Go to the Delete Recipe Page">Delete</a>
+                <a href="{% url 'edit_recipe' recipe.id %}" class="btn btn-outline-secondary" aria-label="Go to the Edit Recipe Page">Edit</a>
+                <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-outline-danger" aria-label="Go to the Delete Recipe Page">Delete</a>
 
                 {% endif %}
 
@@ -101,8 +101,8 @@
                 </div>
                 <!-- Edit/Delete comment -->
                 {% if user.is_authenticated and user.username == comment.name or user.is_superuser %}
-                <a href="{% url 'edit_comment' comment.id %}" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Comments Page">Edit</a>
-                    <button type="button" class="btn-delete btn-sm btn-danger mb-3" data-bs-toggle="modal"
+                <a href="{% url 'edit_comment' comment.id %}" class="btn btn-outline-secondary" aria-label="Go to the Edit Comments Page">Edit</a>
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                         data-bs-target="#delete-comment">Delete</button>
                 <div class="modal fade" id="delete-comment"
                         tabindex="-1" aria-hidden="true">
@@ -115,9 +115,9 @@
                                     Are you sure you want to delete your comment?
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
+                                    <button type="button" class="btn btn-outline-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <a href="{% url 'delete_comment' comment.id %}" class="btn btn-danger" aria-label="Delete Comment">Delete</a>
+                                    <a href="{% url 'delete_comment' comment.id %}" class="btn btn-outline-danger" aria-label="Delete Comment">Delete</a>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@
                 <form method="post" style="margin-top: 1.3em;">
                     {{ comment_form | crispy }}
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-signup btn-lg">Comment</button>
+                    <button type="submit" class="btn btn-outline-success">Comment</button>
                 </form>
 
                 {% endif %}

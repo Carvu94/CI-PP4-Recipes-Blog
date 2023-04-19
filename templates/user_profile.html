@@ -7,13 +7,10 @@
 <div class="card mb-3">
     <div class="row no-gutters">
         <div class="col-md-2">
-            {% if page_user.user.image %}
-            <img src="{{ recipe.author.prfile.image.url }}" alt="" class="card-img">
+            <img src="{{ page_user.image.url }}" alt="profile image" class="card-img">
 
-            {% else %}
-            <img src="https://www.stockvault.net/data/2010/03/13/113298/preview16.jpg%" alt="" class="card-img">
+            <!-- <img src="https://www.stockvault.net/data/2010/03/13/113298/preview16.jpg%" alt="" class="card-img"> -->
 
-            {% endif %}
         </div>
         <div class="col-md-10">
             <div class="card-body">

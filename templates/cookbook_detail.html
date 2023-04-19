@@ -102,8 +102,8 @@
                         <!-- Edit/Delete Recipe -->
                         {% if user.is_authenticated and user.id == recipe.author.id or user.is_superuser %}
 
-                        <a href="{% url 'edit_recipe' recipe.id %}" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Recipe Page">Edit</a>
-                        <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-danger" aria-label="Go to the Delete Recipe Page">Delete</a>
+                        <a href="{% url 'edit_recipe' recipe.id %}" class="btn btn-outline-secondary" aria-label="Go to the Edit Recipe Page">Edit</a>
+                        <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-outline-danger" aria-label="Go to the Delete Recipe Page">Delete</a>
                         
                         {% endif %}
                     </div>
