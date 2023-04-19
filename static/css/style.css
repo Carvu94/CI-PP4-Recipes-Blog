@@ -46,10 +46,6 @@ body {
     background-color: transparent;
 }
 
-.image-container {
-    position: relative;
-}
-
 .image-flash {
     position: absolute;
     bottom: 5%;
@@ -108,15 +104,6 @@ body {
     color: #E84610;
 }
 
-.post-title {
-    margin-top: 20%;
-    margin-left: 5%;
-}
-
-.post-subtitle {
-    margin-left: 5%;
-    color: lightgray;
-}
 
 .btn-signup {
     background-color: #23BBBB;
@@ -210,4 +197,29 @@ body {
 
 .comment-card {
     width: 100%;
+}
+
+/* Recipe Detail */
+
+.flex {
+    display: flex;
+    margin-left: 5%;
+    margin-top: 50px;
+    max-width: 100%;
+    max-height: 50%;
+}
+
+.post-title {
+    margin-left: 5%;
+}
+
+.post-subtitle {
+    margin-left: 5%;
+    color: black;
+}
+
+.image-container {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
 }
