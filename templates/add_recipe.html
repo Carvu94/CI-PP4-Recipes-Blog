@@ -2,13 +2,18 @@
 
 {% block content %}
 
-<h1>Add recipe</h1>
-<div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-outline-primary" value="Save">Add Recipe</button>
-</div>
-</form>
+    <div class="page-title">
+        <h1>Add recipe</h1>
+    </div>
+    <div class="page-title">
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-outline-primary" value="Save">Add Recipe</button>
+            </form>
+        </div>
+    </div>
+
 
 {% endblock %}

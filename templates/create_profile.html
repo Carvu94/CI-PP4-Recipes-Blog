@@ -2,12 +2,16 @@
 
 {% block content %}
 
-<h1>Create Profile</h1>
+    <div class="page-title">
+        <h1>Create Profile</h1>
+    </div>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-outline-primary" value="Save">Create</button>
-</form>
+    <div class="page-title">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-outline-primary" value="Save">Create</button>
+        </form>
+    </div>
 
 {% endblock %}

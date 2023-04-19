@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid recipe-margin">
     <div class="row">
 
         <div class="col-12 mt-3 left">
@@ -36,7 +36,7 @@
                             <p class="card-text">{{ recipe.excerpt }}</p>
                         </a>
                         <hr/>
-                        <p class="card-text text-muted h6">{{ recipe.created_on }} <i class="far fa-heart"></i>{{ recipe.number_of_likes }}</p>
+                        <p class="card-text text-muted h6"> {{ recipe.created_on }} <i class="far fa-heart"></i> {{ recipe.number_of_likes }}</p>
                     </div>
                     {% if user.is_authenticated and user.id == recipe.author.id or user.is_superuser %}
 
