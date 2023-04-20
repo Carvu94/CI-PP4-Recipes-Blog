@@ -216,6 +216,17 @@ class AddRecipeView(generic.CreateView):
         'categories',
         'time_to_cook')
 
+    def upload(request):
+        context = dict(backend_form=EditRecipe())
+
+        if request.method == 'POST':
+            form = EditRecipe(request.POST, request.FILES)
+            context['posted'] = form.instance
+            if form.is_valid():
+                form.save()
+
+        return render(request, 'edit_recipe.html', context)
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         response = super().form_valid(form)
@@ -426,6 +437,17 @@ class CreateProfileView(LoginRequiredMixin, CreateView):
     model = Profile
     form_class = ProfilePageForm
     template_name = 'create_profile.html'
+
+    def upload(request):
+        context = dict(backend_form=EditRecipe())
+
+        if request.method == 'POST':
+            form = ProfilePageForm(request.POST, request.FILES)
+            context['posted'] = form.instance
+            if form.is_valid():
+                form.save()
+
+        return render(request, 'home', context)
 
     def form_valid(self, form):
         form.instance.user = self.request.user
