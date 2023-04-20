@@ -1,7 +1,13 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
 from .models import Recipe, Category, Comment, Profile, Cookbook
-from .forms import CommentForm, ProfilePageForm, AddCookbookForm, EditRecipe
+from .forms import (
+    CommentForm,
+    ProfilePageForm,
+    AddCookbookForm,
+    EditRecipe,
+    EditCookbookForm
+    )
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -136,7 +142,20 @@ class AddCookbookView(generic.CreateView):
     template_name = 'add_cookbook.html'
     fields = (
         'title',
-        'content')
+        'content',
+        'featured_image'
+        )
+
+    def upload(request):
+        context = dict(backend_form=AddCookbookForm())
+
+        if request.method == 'POST':
+            form = AddCookbookForm(request.POST, request.FILES)
+            context['posted'] = form.instance
+            if form.is_valid():
+                form.save()
+
+        return render(request, 'add_cookbook.html', context)
 
     def post(self, request, *args, **kwargs):
         form = AddCookbookForm(data=request.POST)
@@ -163,7 +182,23 @@ class EditCookbookView(LoginRequiredMixin, UpdateView):
     """
     model = Cookbook
     template_name = 'edit_cookbook.html'
-    fields = ('title', 'content', 'recipes')
+    fields = (
+        'title',
+        'content',
+        'recipes',
+        'featured_image'
+        )
+
+    def upload(request):
+        context = dict(backend_form=EditCookbookForm())
+
+        if request.method == 'POST':
+            form = EditCookbookForm(request.POST, request.FILES)
+            context['posted'] = form.instance
+            if form.is_valid():
+                form.save()
+
+        return render(request, 'edit_cookbook.html', context)
 
     def form_valid(self, form):
         form.instance.author = self.request.user

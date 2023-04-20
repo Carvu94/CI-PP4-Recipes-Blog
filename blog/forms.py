@@ -9,6 +9,24 @@ class AddCookbookForm(forms.ModelForm):
             'title',
             'content',
             'recipes',
+            'featured_image'
+            )
+
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control'}),
+            'recipes': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+
+class EditCookbookForm(forms.ModelForm):
+    class Meta:
+        model = Cookbook
+        fields = (
+            'title',
+            'content',
+            'recipes',
+            'featured_image'
             )
 
         widgets = {

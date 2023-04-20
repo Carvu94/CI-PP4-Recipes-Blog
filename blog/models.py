@@ -98,6 +98,7 @@ class Cookbook(models.Model):
     content = models.TextField(default='')
     recipes = models.ManyToManyField(Recipe, related_name='book_recipes',
                                      blank=True)
+    featured_image = CloudinaryField('image', default='placeholder')
     approved = models.BooleanField(default=False)
     likes = models.ManyToManyField(User, related_name='book_likes', blank=True)
     status = models.IntegerField(choices=STATUS, default=0)
