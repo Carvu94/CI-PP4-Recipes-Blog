@@ -6,10 +6,10 @@
         <h1>Categories</h1>
     </div>
     <div class="container box-shadow">
-        <div class="row">
+        <div class="row categories-cards-con-m">
             {{ cats }}
             {% for category in object_list %}
-            <div class="container-lg categories-cont row">
+            <div class="container-lg categories-cont row categories-cards-m">
                 <div class="card text-white">
                     {% if 'placeholder' in category.category_image.url %}
                     <img src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img" alt="...">

@@ -36,7 +36,7 @@
                         </div>
                         <a href="{% url 'cookbook_detail' cookbook.id %}" class="post-link">
                             <h2 class="card-title">{{ cookbook.title }}</h2>
-                            <p class="card-text">{{ cookbook.content }}</p>
+                            <p class="card-text">{{ cookbook.content|slice:":50" }}</p>
                         </a>
                         <hr/>
                         <p class="card-text text-muted h6">{{ cookbook.created_on }} <i class="far fa-heart"></i> {{ cookbook.number_of_likes }}</p>

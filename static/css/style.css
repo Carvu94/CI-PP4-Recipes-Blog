@@ -259,3 +259,25 @@ body {
 .cookbook-info {
     margin-top: 20px;
 }
+
+/* Categories media queries */
+
+@media only screen and (max-width: 768px) {
+    .categories-cards-m {
+        margin: 0;
+        padding: 0;
+    }
+
+    .categories-cards-con-m {
+        width: 100%;
+        margin: 0;
+        display: grid;
+    }
+
+    .categories-cont {
+        max-width: 100%;
+        margin-top: 16px;
+        display: block;
+    }
+    
+}
