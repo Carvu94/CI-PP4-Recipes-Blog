@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
 from .models import Recipe, Category, Comment, Profile, Cookbook
 from .forms import CommentForm, ProfilePageForm, AddCookbookForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -379,6 +379,17 @@ class EditProfilePageView(LoginRequiredMixin, UpdateView):
     template_name = 'edit_profile.html'
     fields = ('user', 'bio', 'image')
     success_url = reverse_lazy('home')
+
+    def upload(request):
+        context = dict(backend_form=ProfilePageForm())
+
+        if request.method == 'POST':
+            form = ProfilePageForm(request.POST, request.FILES)
+            context['posted'] = form.instance
+            if form.is_valid():
+                form.save()
+
+        return render(request, 'user_profile.html', context)
 
 
 class DeleteUserProfile(LoginRequiredMixin, DeleteView):

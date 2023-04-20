@@ -39,5 +39,4 @@ class ProfilePageForm(forms.ModelForm):
 
         widgets = {
             'bio': forms.Textarea(attrs={'class': 'form-control'}),
-            # 'image': forms.ImageField
         }
