@@ -3,12 +3,19 @@
   // Hover to view descriptions of existing attributes.
   "version": "0.2.0",
   "configurations": [
-      {
-            "name": "Python: Current File (Integrated Terminal)",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "internalConsole"
-        }
-  ]
+    {
+      "name": "Python: Django",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/manage.py",
+      "env": {
+          "DJANGO_SETTINGS_MODULE": "hungrychef.settings",
+          "DATABASE_URL": "postgres://axofpxtv:qFmGfWx2ybE12QZ0vk-6bngt6Yzk5j7s@mel.db.elephantsql.com/axofpxtv",
+          "SECRET_KEY": "hun94ch3F",
+          "CLOUDINARY_URL": "cloudinary://847943563841256:JDA7a45uQFD67yEZkIsIPCkNB6Q@dqpkix8px",
+      },
+      "args": ["runserver", "0.0.0.0:8000"],
+      "django": true,
+      "subProcess": true
+  },  ]
 }

@@ -1,24 +1,23 @@
-from .models import Comment, Profile, CookbookComment, Recipe
+from .models import Comment, Profile, Cookbook
 from django import forms
 
 
-# class AddRecipeForm(forms.ModelForm):
-#     class Meta:
-#         model = Recipe
-#         fields = (
-#             'title',
-#             'content',
-#             'featured_image',
-#             'categories',
-#             'time_to_cook')
+class AddCookbookForm(forms.ModelForm):
+    class Meta:
+        model = Cookbook
+        fields = (
+            'title',
+            'content',
+            'recipes',
+            # 'featured_image',
+            )
 
-#         widgets = {
-#             'title': forms.TextInput(attrs={'class': 'form-control'}),
-#             'content': forms.Textarea(attrs={'class': 'form-control'}),
-#             'featured_image': forms.ImageField(),
-#             'categories': forms.Select(attrs={'class': 'form-control'}),
-#             'time_to_cook': forms.Textarea(attrs={'class': 'form-control'}),
-#         }
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control'}),
+            # 'featured_image': forms.ImageField(),
+            'recipes': forms.Select(attrs={'class': 'form-control'}),
+        }
 
 
 class CommentForm(forms.ModelForm):
@@ -27,10 +26,10 @@ class CommentForm(forms.ModelForm):
         fields = ('body',)
 
 
-class BookCommentForm(forms.ModelForm):
-    class Meta:
-        model = CookbookComment
-        fields = ('body',)
+# class BookCommentForm(forms.ModelForm):
+#     class Meta:
+#         model = CookbookComment
+#         fields = ('body',)
 
 
 class ProfilePageForm(forms.ModelForm):

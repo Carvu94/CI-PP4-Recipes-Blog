@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
 from .models import Recipe, Category, Comment, Profile, Cookbook
-from .forms import CommentForm, ProfilePageForm
+from .forms import CommentForm, ProfilePageForm, AddCookbookForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -167,9 +167,19 @@ class AddCookbookView(generic.CreateView):
     template_name = 'add_cookbook.html'
     fields = (
         'title',
-        'content',
-        # 'recipes',
-        'featured_image')
+        'content')
+
+    def post(self, request, *args, **kwargs):
+        form = AddCookbookForm(data=request.POST)
+        if form.is_valid():
+            cookbook = form.save(commit=False)
+            cookbook.author = request.user
+            cookbook.save()
+            form.save_m2m()
+            # message.success(request, 'Cookbook created!')
+            return redirect(cookbook.get_absolute_url())
+        else:
+            return self.form_invalid(form)
 
 
 class RecipeList(generic.ListView):
