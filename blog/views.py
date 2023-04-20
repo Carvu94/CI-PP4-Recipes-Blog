@@ -144,9 +144,15 @@ class AddCookbookView(generic.CreateView):
             cookbook = form.save(commit=False)
             cookbook.author = request.user
             cookbook.save()
+            messages.success(self.request,
+                             'Your cookbook is created,'
+                             'and it is waiting approval')
             form.save_m2m()
             return redirect(cookbook.get_absolute_url())
         else:
+            messages.warning(self.request,
+                             'Sorry, the cookbook was not created,'
+                             'please try again.')
             return self.form_invalid(form)
 
 
@@ -159,6 +165,19 @@ class EditCookbookView(LoginRequiredMixin, UpdateView):
     template_name = 'edit_cookbook.html'
     fields = ('title', 'content', 'recipes')
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        response = super().form_valid(form)
+        messages.success(self.request, 'Cookbook edited successfully!')
+        return response
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        messages.error(self.request,
+                       'Error editing cookbook.'
+                       'Please check the form and try again.')
+        return response
+
 
 @method_decorator(login_required, name='dispatch')
 class DeleteCookbookView(DeleteView):
@@ -168,6 +187,12 @@ class DeleteCookbookView(DeleteView):
     model = Cookbook
     template_name = 'delete_cookbook.html'
     success_url = reverse_lazy('cookbooks')
+
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(request, 'Cookbook deleted successfully!')
+
+        return response
 
 
 class RecipeList(generic.ListView):
@@ -190,6 +215,21 @@ class AddRecipeView(generic.CreateView):
         'featured_image',
         'categories',
         'time_to_cook')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        response = super().form_valid(form)
+        messages.success(self.request,
+                         'Recipe added successfully,'
+                         'and It is waiting for approval.')
+        return response
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        messages.error(self.request,
+                       'Error adding recipe.'
+                       'Please check the form and try again.')
+        return response
 
 
 @method_decorator(login_required, name='dispatch')
@@ -218,6 +258,20 @@ class EditRecipeView(LoginRequiredMixin, UpdateView):
 
         return render(request, 'edit_recipe.html', context)
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        response = super().form_valid(form)
+        messages.success(self.request,
+                         'Recipe edited successfully.')
+        return response
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        messages.error(self.request,
+                       'Error editing recipe.'
+                       'Please check the form and try again.')
+        return response
+
 
 @method_decorator(login_required, name='dispatch')
 class DeleteRecipeView(DeleteView):
@@ -227,6 +281,12 @@ class DeleteRecipeView(DeleteView):
     model = Recipe
     template_name = 'delete_recipe.html'
     success_url = reverse_lazy('recipes')
+
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(request, 'Recipe deleted successfully!')
+
+        return response
 
 
 class RecipeDetail(View):
@@ -269,6 +329,9 @@ class RecipeDetail(View):
             comment = comment_form.save(commit=False)
             comment.post = recipe
             comment.save()
+            messages.success(request,
+                             'The comment was posted,'
+                             'and it is waiting approval.')
         else:
             comment_form = CommentForm()
 
@@ -292,6 +355,7 @@ def delete_comment(request, comment_id):
     """
     comment = get_object_or_404(Comment, id=comment_id)
     comment.delete()
+    messages.success(request, 'The comment was deleted successfully')
 
     return HttpResponseRedirect(reverse(
         'recipe_detail', args=[comment.post.slug]
@@ -306,6 +370,20 @@ class EditComment(LoginRequiredMixin, UpdateView):
     template_name = 'edit_comment.html'
     form_class = CommentForm
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        response = super().form_valid(form)
+        messages.success(self.request,
+                         'Comment edited successfully.')
+        return response
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        messages.error(self.request,
+                       'Error editing comment.'
+                       'Please check the form and try again.')
+        return response
+
 
 class RecipeLike(LoginRequiredMixin, View):
     """
@@ -316,8 +394,10 @@ class RecipeLike(LoginRequiredMixin, View):
 
         if post.likes.filter(id=request.user.id).exists():
             post.likes.remove(request.user)
+            messages.success(request, 'You have unliked this post.')
         else:
             post.likes.add(request.user)
+            messages.success(request, 'You have liked this post.')
 
         return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
 
@@ -349,7 +429,17 @@ class CreateProfileView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        messages.success(self.request,
+                         'Profile created successfully.')
+        return response
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        messages.error(self.request,
+                       'Error creating a profile.'
+                       'Please check the form and try again.')
+        return response
 
 
 @method_decorator(login_required, name='dispatch')
@@ -370,8 +460,21 @@ class EditProfilePageView(LoginRequiredMixin, UpdateView):
             context['posted'] = form.instance
             if form.is_valid():
                 form.save()
-
         return render(request, 'user_profile.html', context)
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        response = super().form_valid(form)
+        messages.success(self.request,
+                         'Profile edited successfully.')
+        return response
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        messages.error(self.request,
+                       'Error editing a profile.'
+                       'Please check the form and try again.')
+        return response
 
 
 class DeleteUserProfile(LoginRequiredMixin, DeleteView):
@@ -386,4 +489,6 @@ class DeleteUserProfile(LoginRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         user = self.get_object()
         user.delete()
+        messages.success(request, 'The profile was deleted successfully')
+
         return HttpResponseRedirect(reverse('home'))
