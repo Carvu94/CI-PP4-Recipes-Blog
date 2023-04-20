@@ -178,6 +178,10 @@ body {
     margin-top: 20px;
 }
 
+.recipes-margin {
+    margin-bottom: 20px;
+}
+
 /* Carousel */
 
 .carousel-inner {
@@ -238,8 +242,20 @@ body {
     margin-right: 20px;
 }
 
+/* Profile image */
 .profile-pic {
     max-width: 200px;
     max-height: 200px;
 
+}
+
+/* About us page */
+.about-page {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* Cookbook page */
+.cookbook-info {
+    margin-top: 20px;
 }

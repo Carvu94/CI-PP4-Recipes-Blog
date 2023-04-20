@@ -2,29 +2,15 @@
 
 {% load crispy_forms_tags %}
 
-    <div class="masthead">
-        <div class="row">
-            <div class="row g-0">
-                <div class="col-md-6 masthead-text">
-                    <!-- Cookbook title -->
-                    <h1 class="post-title">{{ cookbook.title }}
-                    </h1>
-                    <!-- cookbook author and created date -->
-                    <a href="{% url 'profile_page' cookbook.author.profile.id %}">
-                        <p class="post-subtitle">{{ cookbook.author }}</p>
-                    </a>
-                    <p class="post-subtitle">{{ cookbook.created_on }}</p>
-                </div>
-                <div class="d-none d-md-block col-md-6 masthead-image">
-                    <!-- The featured image URL goes in the src attribute -->
-                    {% if "placeholder" in cookbook.featured_image.url %}
-                    <img src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width="100%">
-                    {% else %}
-                    <img src="" width="100%">
-                    {% endif %}
-                </div>
-            </div>
-        </div>
+    <div class="cookbook-info">
+        <!-- Cookbook title -->
+        <h1 class="post-title">{{ cookbook.title }}
+        </h1>
+        <!-- cookbook author and created date -->
+        <a href="{% url 'profile_page' cookbook.author.profile.id %}">
+            <p class="post-subtitle">{{ cookbook.author }}</p>
+        </a>
+        <p class="post-subtitle">{{ cookbook.created_on }}</p>
     </div>
     <div class="container">
         <div class="row">
@@ -34,7 +20,7 @@
                     <p class="card-text ">{{ cookbook.content | safe }}</p>
                     <div class="row">
                         <!-- Likes -->
-                        <div class="col-1">
+                        <div>
                             <strong>
                                 {% if user.is_authenticated %}
                                 <form action="{% url 'cookbook_like' cookbook.id %}" class="d-inline" method="POST">
@@ -53,9 +39,11 @@
                                 {% endif %}
                                 <span class="text-secondary">{{ cookbook.number_of_likes }}</span>
                             </strong>
+                            <br>
+                            <br>
                             <!-- Edit/Delete Cookbook -->
                             {% if user.is_authenticated and user.id == cookbook.author.id or user.is_superuser %}
-
+                            
                             <a href="{% url 'edit_cookbook' cookbook.id %}" class="btn btn-outline-secondary" aria-label="Go to the Edit Cookbook Page">Edit</a>
                             <a href="{% url 'delete_cookbook' cookbook.id %}" class="btn btn-outline-danger" aria-label="Go to the Delete Cookbook Page">Delete</a>
                             
@@ -78,7 +66,7 @@
             <div class="col-12 mt-3 left">
                 <div class="row">
                 {% for recipe in recipes %}
-                    <div class="col-md-4">
+                    <div class="col-md-4 recipes-margin">
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="image-container">

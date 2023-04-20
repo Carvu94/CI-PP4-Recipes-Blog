@@ -112,6 +112,9 @@ class Cookbook(models.Model):
     def get_absolute_url(self):
         return reverse('cookbooks')
 
+    def number_of_likes(self):
+        return self.likes.count()
+
 
 class CookbookComment(models.Model):
     """

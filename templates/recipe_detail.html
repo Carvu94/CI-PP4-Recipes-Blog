@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 <div class="flex">
-    <div class="d-none d-md-block col-md-6 image-container">
+    <div class="d-md-block col-md-6 image-container">
         <!-- The featured image URL goes in the src attribute -->
         {% if "placeholder" in recipe.featured_image.url %}
             <img src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width="100%">
@@ -14,7 +14,7 @@
 
     <!-- Recipe title, author and created date -->
     
-    <div class="d-none d-md-block col-md-6">
+    <div class="d-md-block col-md-6">
         <!-- Recipe title -->
         <h1 class="post-title">{{ recipe.title }}</h1>
 
