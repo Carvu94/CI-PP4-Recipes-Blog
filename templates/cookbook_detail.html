@@ -56,13 +56,6 @@
                         </div>
     
                     </div>
-                    <!-- Edit/Delete Recipe -->
-                    {% if user.is_authenticated and user.id == recipe.author.id or user.is_superuser %}
-    
-                    <a href="{% url 'edit_recipe' recipe.id %}" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Recipe Page">Edit</a>
-                    <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-danger" aria-label="Go to the Delete Recipe Page">Delete</a>
-    
-                    {% endif %}
     
                 </div>
             </div>
@@ -97,7 +90,7 @@
                                 <p class="card-text">{{ recipe.excerpt }}</p>
                             </a>
                             <hr/>
-                            <p class="card-text text-muted h6">{{ recipe.created_on }} <i class="far fa-heart"></i>{{ recipe.number_of_likes }}</p>
+                            <p class="card-text text-muted h6"> {{ recipe.created_on }} <i class="far fa-heart"></i> {{ recipe.number_of_likes }}</p>
                         </div>
                         <!-- Edit/Delete Recipe -->
                         {% if user.is_authenticated and user.id == recipe.author.id or user.is_superuser %}

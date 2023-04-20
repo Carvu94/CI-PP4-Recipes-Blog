@@ -33,7 +33,7 @@
                                 <p class="card-text">{{ recipe.excerpt }}</p>
                             </a>
                             <hr/>
-                            <p class="card-text text-muted h6">{{ recipe.created_on }} <i class="far fa-heart"></i>{{ recipe.number_of_likes }}</p>
+                            <p class="card-text text-muted h6"> {{ recipe.created_on }} <i class="far fa-heart"></i> {{ recipe.number_of_likes }}</p>
                         </div>
                         <!-- Edit/Delete Recipe -->
                         {% if user.is_authenticated and user.id == recipe.author.id or user.is_superuser %}
