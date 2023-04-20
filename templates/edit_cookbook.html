@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="page-title">
+        <h1>Edit recipe</h1>
+    </div>
+    <div class="page-title">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-outline-primary" value="Save">Edit Cookbook</button>
+        </form>
+    </div>
+
+{% endblock %}

@@ -182,6 +182,16 @@ class AddCookbookView(generic.CreateView):
             return self.form_invalid(form)
 
 
+@method_decorator(login_required, name='dispatch')
+class EditCookbookView(LoginRequiredMixin, UpdateView):
+    """
+    Edit Cookbook
+    """
+    model = Cookbook
+    template_name = 'edit_cookbook.html'
+    fields = ('title', 'content', 'recipes')
+
+
 class RecipeList(generic.ListView):
     """
     Renders the recipes page
