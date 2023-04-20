@@ -19,12 +19,6 @@ class HomeView(generic.ListView):
     queryset = Recipe.objects.filter(status=1).order_by('likes')[:3]
     template_name = 'index.html'
 
-    # def get_context_data(self, *args, **kwargs):
-    #     cat_menu = Category.objects.all()
-    #     context = super(HomeView, self).get_context_data(*args, **kwargs)
-    #     context["cat_menu"] = cat_menu
-    #     return context
-
 
 def about(request):
     """
@@ -90,10 +84,6 @@ class CookbookDetail(View):
     def get(self, request, id, *args, **kwargs):
         cookbook = Cookbook.objects.get(id=id)
         recipes = cookbook.recipes.all()
-        # queryset = Cookbook.objects.filter(status=1)
-        # cookbook = get_object_or_404(queryset, id=id)
-        # comments = cookbook.cookbooks.filter(approved=True).order_by(
-        #     'created_on')
         liked = False
         if cookbook.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -104,34 +94,16 @@ class CookbookDetail(View):
             {
                 "cookbook": cookbook,
                 "recipes": recipes,
-                # "comments": comments,
-                # "commented": False,
                 "liked": liked,
-                # "comment_form": BookCommentForm()
             },
         )
 
     def post(self, request, id, *args, **kwargs):
         cookbook = Cookbook.objects.get(id=id)
         recipes = cookbook.recipes.all()
-        # queryset = Cookbook.objects.filter(status=1)
-        # cookbook = get_object_or_404(queryset, id=id)
-        # comments = cookbook.cookbooks.filter(approved=True).order_by(
-        #     'created_on')
         liked = False
         if cookbook.likes.filter(id=self.request.user.id).exists():
             liked = True
-
-        # comment_form = BookCommentForm(data=request.POST)
-
-        # if comment_form.is_valid():
-        #     comment_form.instance.email = request.user.email
-        #     comment_form.instance.name = request.user.username
-        #     comment = comment_form.save(commit=False)
-        #     comment.cookbook = cookbook
-        #     comment.save()
-        # else:
-        #     comment_form = BookCommentForm()
 
         return render(
             request,
@@ -139,10 +111,7 @@ class CookbookDetail(View):
             {
                 "cookbook": cookbook,
                 "recipes": recipes,
-                # "comments": comments,
-                # "commented": True,
                 "liked": liked,
-                # "comment_form": BookCommentForm()
             },
         )
 
@@ -176,7 +145,6 @@ class AddCookbookView(generic.CreateView):
             cookbook.author = request.user
             cookbook.save()
             form.save_m2m()
-            # message.success(request, 'Cookbook created!')
             return redirect(cookbook.get_absolute_url())
         else:
             return self.form_invalid(form)
@@ -215,12 +183,9 @@ class RecipeList(generic.ListView):
 @method_decorator(login_required, name='dispatch')
 class AddRecipeView(generic.CreateView):
     model = Recipe
-    # form_class = AddRecipeForm
-    # fields = '__all__'
     template_name = 'add_recipe.html'
     fields = (
         'title',
-        # 'author',
         'content',
         'featured_image',
         'categories',

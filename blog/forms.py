@@ -9,13 +9,11 @@ class AddCookbookForm(forms.ModelForm):
             'title',
             'content',
             'recipes',
-            # 'featured_image',
             )
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
-            # 'featured_image': forms.ImageField(),
             'recipes': forms.Select(attrs={'class': 'form-control'}),
         }
 
@@ -24,12 +22,6 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('body',)
-
-
-# class BookCommentForm(forms.ModelForm):
-#     class Meta:
-#         model = CookbookComment
-#         fields = ('body',)
 
 
 class ProfilePageForm(forms.ModelForm):
