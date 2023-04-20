@@ -237,3 +237,9 @@ body {
     margin-left: 20px;
     margin-right: 20px;
 }
+
+.profile-pic {
+    max-width: 200px;
+    max-height: 200px;
+
+}
