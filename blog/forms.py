@@ -1,4 +1,4 @@
-from .models import Comment, Profile, Cookbook
+from .models import Comment, Profile, Cookbook, Recipe
 from django import forms
 
 
@@ -39,4 +39,22 @@ class ProfilePageForm(forms.ModelForm):
 
         widgets = {
             'bio': forms.Textarea(attrs={'class': 'form-control'}),
+        }
+
+
+class EditRecipe(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        fields = [
+            'title',
+            'content',
+            'categories',
+            'time_to_cook',
+            'featured_image'
+            ]
+
+        widgets = {
+            'title': forms.Textarea(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control'}),
+            'categories': forms.Select(attrs={'class': 'form-control'}),
         }

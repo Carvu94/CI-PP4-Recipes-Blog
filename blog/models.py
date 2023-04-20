@@ -30,14 +30,14 @@ class Recipe(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="blog_posts")
     updated_on = models.DateTimeField(auto_now=True)
-    content = models.TextField()
+    content = models.TextField('recipe details')
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)
     categories = models.ManyToManyField(Category)
-    time_to_cook = models.IntegerField(default=0)
+    time_to_cook = models.IntegerField('time to cook (minutes)', default=0)
 
     class Meta:
         ordering = ['-created_on']

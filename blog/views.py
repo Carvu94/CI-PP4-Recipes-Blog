@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
 from .models import Recipe, Category, Comment, Profile, Cookbook
-from .forms import CommentForm, ProfilePageForm, AddCookbookForm
+from .forms import CommentForm, ProfilePageForm, AddCookbookForm, EditRecipe
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -234,7 +234,24 @@ class EditRecipeView(LoginRequiredMixin, UpdateView):
     """
     model = Recipe
     template_name = 'edit_recipe.html'
-    fields = ('title', 'content', 'categories', 'time_to_cook')
+    fields = (
+        'title',
+        'content',
+        'categories',
+        'time_to_cook',
+        'featured_image'
+        )
+
+    def upload(request):
+        context = dict(backend_form=EditRecipe())
+
+        if request.method == 'POST':
+            form = EditRecipe(request.POST, request.FILES)
+            context['posted'] = form.instance
+            if form.is_valid():
+                form.save()
+
+        return render(request, 'edit_recipe.html', context)
 
 
 @method_decorator(login_required, name='dispatch')
