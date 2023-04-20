@@ -57,7 +57,7 @@
                             {% if user.is_authenticated and user.id == cookbook.author.id or user.is_superuser %}
 
                             <a href="{% url 'edit_cookbook' cookbook.id %}" class="btn btn-outline-secondary" aria-label="Go to the Edit Cookbook Page">Edit</a>
-                            <a href="#" class="btn btn-outline-danger" aria-label="Go to the Delete Cookbook Page">Delete</a>
+                            <a href="{% url 'delete_cookbook' cookbook.id %}" class="btn btn-outline-danger" aria-label="Go to the Delete Cookbook Page">Delete</a>
                             
                             {% endif %}
 

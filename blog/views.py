@@ -192,6 +192,16 @@ class EditCookbookView(LoginRequiredMixin, UpdateView):
     fields = ('title', 'content', 'recipes')
 
 
+@method_decorator(login_required, name='dispatch')
+class DeleteCookbookView(DeleteView):
+    """
+    Delete Cookbook
+    """
+    model = Cookbook
+    template_name = 'delete_cookbook.html'
+    success_url = reverse_lazy('cookbooks')
+
+
 class RecipeList(generic.ListView):
     """
     Renders the recipes page
