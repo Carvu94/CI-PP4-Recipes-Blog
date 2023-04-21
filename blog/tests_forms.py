@@ -40,7 +40,7 @@ class TestAddCookbookForm(TestCase):
 class EditCookbookFormTest(TestCase):
     """
     Test edit book form
-    """    
+    """
     def test_form_valid(self):
         coobook = Cookbook.objects.create(
             title='Test',
@@ -76,7 +76,7 @@ class EditCookbookFormTest(TestCase):
 class CommentFormTest(TestCase):
     """
     Test comment form
-    """    
+    """
     def test_form_valid_data(self):
         form = CommentForm(data={'body': 'This is a test comment.'})
         self.assertTrue(form.is_valid())
@@ -111,6 +111,9 @@ class ProfilePageFormTestCase(TestCase):
 
 
 class EditRecipeFormTest(TestCase):
+    """
+    Test edit recipe form
+    """
     def test_form_valid(self):
         recipe = Recipe.objects.create(
             title='Test',
