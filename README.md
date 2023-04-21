@@ -435,7 +435,79 @@ When the admin is deleting comments from the page view, the wrong comment is del
 
 
 ## Deployment
+***
+- During the initial phases of development, Knowledge Flow was deployed on Heroku. To avoid any potential deployment issues near the app's release, I made sure that the database and static files were accessible right from the start of the project.
 
+###  Creating Database ==> ElephantSQL
+1. To generate a managed PostgreSQL database, please proceed to [ElephantSQL](https://customer.elephantsql.com/) and either sign up or sign in to your account. Once you've logged in, click on the 'Create New Instance' button.
+
+
+2. Name your database and select the 'Tiny Turtle' payment plan. Then, click on 'Select Region'
+
+3. Select your preferred region and create the database instance.
+    After creating the instance, navigate to the instances page and click on the name of the database you selected earlier. Then, in the details section on the following page, copy the PostgreSQL URL.
+
+### Heroku Deployment
+
+- Before deploying to Heroku there are a few things to have ready
+ElephantSQL Database url, SECRET_KEY variable(generate key different from provided one), CLOUDINARY_URL variable(after logging in the Cloudinary website copy the 'cloudinary url' from your account dashboard as the value of a variable )
+- Create env.py (at the root level of your project) This file contains the above mentioned
+variables in a form of:
+- os.environ['DATABASE_URL'] = 'value of ElephantSQL Database url'
+
+- os.environ['SECRET_KEY'] = 'value of secret key'
+    secret key could be generated [here](https://miniwebtool.com/django-secret-key-generator/)
+
+-  os.environ['CLOUDINARY_URL'] = 'value of 'cloudinary url' from your  
+   account dashboard'
+   cloudinary url can be found [here](https://console.cloudinary.com/)
+
+1. First, sign up or sign in to your Heroku account. Next, create a new app from the Heroku dashboard.
+
+2. Choose a unique name for your app and enter the region.Then, click on the 
+    'Create App' button.
+    Once your app has been created, select the 'Settings' tab from the dashboard and navigate to 'Reveal Config Vars'. From there, paste the: 
+    - ElephantSQL Database URL into the DATABASE_URL environment variable.
+    - SECRET_KEY variable  into the SECRET_KEY environment variable.
+    - CLOUDINARY_URL variable  into the CLOUDINARY_URL environment variable.
+    - add DISABLE_COLLECTSTATIC variablewith value of 1 (for initial deployment, later this variable can be removed)
+    - add variable named PORT with value of 8000
+
+
+3. Select Deploy option from the 'tabs'
+
+4. From Deployment method section choose Connect to GitHub and click on it
+
+5. Find your github repository by name and connect
+
+6. At the bottom of the page choose either automatic deployment manual 
+   deployment(deploy by branch)
+
+7. Click on the option you want, and you should be able to see the boiler process.
+    and after a while, your app should be deployed.
+
+
+### Forking the GitHub Repository
+
+1. Login or Signup to [Github](https://github.com/)
+2. Navigate to  the GitHub repository link  https://github.com/Carvu94/CI-PP4-Recipes-Blog
+2. Click on the Fork button in the top right corner
+
+
+3. Copy of the repository will be in your own GitHub account.
+
+
+### Clone a GitHub Repo
+
+1. Go to the GitHub repository  https://github.com/Carvu94/CI-PP4-Recipes-Blog
+2. Locate the Code button above the list of files (next to 'Add file') and click it
+
+
+3. choose a preferred cloning option by selecting either HTTPS or GitHub CLI.
+4. Open Git Bash
+5. Change the current working directory to the one where you want the cloned directory
+6. Type git clone and paste the URL from the clipboard ($ git clone <span>https://</span>github.com/YOUR-USERNAME/YOUR-REPOSITORY)
+7. Press Enter to create your local clone
 
 [Back to Table Of Contents](#table-of-contents)
 
@@ -445,10 +517,21 @@ When the admin is deleting comments from the page view, the wrong comment is del
 
 ### Code
 
+- [Glassmorphism](https://hype4.academy/tools/glassmorphism-generator) 
+- [Stack Overflow](https://stackoverflow.com/)
+- Code Institute Walkthrough Projects
+
+
+### Tutorials
+
+   - [Codemy.com](https://www.youtube.com/watch?v=B40bteAMM_M&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi)
+   - Code Institute Walkthrough Projects
 
 ## Acknowledgements
 
-
+- Special Thanks to my mentor
+- Thanks to my girlfriend, family and friends for support
+- Thanks to Code Institute and fellow students on Slack channels
 
 
 [Back to Table Of Contents](#table-of-contents)
