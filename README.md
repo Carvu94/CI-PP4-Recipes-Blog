@@ -1,6 +1,6 @@
 # Hungry Chef
 
-Hungry Chef is a blog web site.
+Hungry Chef is a food blog web site where users can find recipes and cookbooks created by other users. The goal of the Hungry Chef is to bring food lovers closer and provide them with a place where they can post their ideas, discuss in comments and get inspired!
 (Developer: Matej Car)
 
 
@@ -23,6 +23,8 @@ Hungry Chef is a blog web site.
    - [Frameworks & Tools](#frameworks--tools)
 - [**Validation**](#validation)
    - [Testing](#testing)
+   - [Device Testing](#device-testing)
+   - [Automated Testing](#automated-testing)
 - [**Bugs**](#bugs)
    - [Solved Bugs](#solved-bugs)
    - [Remaining Bugs](#remaining-bugs)
@@ -334,6 +336,11 @@ Hungry Chef is a blog web site.
 
 - As a visual representation of the project's status, I was using Kanban Board. Here is the [link](https://github.com/users/Carvu94/projects/4/views/1)
 
+
+#### Moscow Prioritisation
+
+- The Moscow prioritization technique is used to prioritize project requirements based on their importance and urgency. I was using Moscow to aid myself in determining priorities in project and also to label the bugs in code that I did not have time to address at that moment. 
+
 ### Data Model
 
 For creating data diagram I was using Lucidchart
@@ -413,6 +420,7 @@ For creating data diagram I was using Lucidchart
 
 ## Validation
 
+- all validation can be found [here](/TESTING.md)
 
 ## Testing
 
