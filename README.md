@@ -449,39 +449,39 @@ For creating data diagram I was using Lucidchart
 
 **Integrity Bug**
 
-When submitting new post, the following error was returned: 
+- When submitting new post, the following error was returned: 
 
-*duplicate key value violates unique constraint "blog_recipe_slug_key"
+- *duplicate key value violates unique constraint "blog_recipe_slug_key"
 DETAIL: Key (slug)=() already exists.*
 
-After some research, I added 'slugify' method to the recipe model and redirected the user to the recipes page.
+- After some research, I added 'slugify' method to the recipe model and redirected the user to the recipes page.
 
 **Admin Post Deletion**
 
-When the admin is deleting comments from the page view, the wrong comment is deleted.
+- When the admin is deleting comments from the page view, the wrong comment is deleted.
 
 
 **Users not able to upload profile/recipe images**
 
-When users try to upload new images to profile or recipe, the image is not saved.
+- When users try to upload new images to profile or recipe, the image is not saved.
 
-With mentors help and cloudinary documentation, edit profile and edit recipe views and forms were adjusted to properly upload to cloudinary and in database.
+- With mentors help and cloudinary documentation, edit profile and edit recipe views and forms were adjusted to properly upload to cloudinary and in database.
 
 **Number of likes on Cookbooks not displayed**
 
-Number of likes on cookbooks not displayed on cookbook cards or detail on cookbooks.html and cookbook_detail.html
+- Number of likes on cookbooks not displayed on cookbook cards or detail on cookbooks.html and cookbook_detail.html
 
-After some research i realised i forgot to def number_of_likes in models.py for cookbook. 
+- After some research i realised i forgot to def number_of_likes in models.py for cookbook. 
 
 ## Remaining Bugs
 
 **Edit Cookbook**
 
-When user follows the link to Edit Cookbook, the title says 'Edit recipe' as the same form is used for updating recipe and cookbook. 
+- When user follows the link to Edit Cookbook, the title says 'Edit recipe' as the same form is used for updating recipe and cookbook. 
 
 ## Deployment
-***
-- During the initial phases of development, Knowledge Flow was deployed on Heroku. To avoid any potential deployment issues near the app's release, I made sure that the database and static files were accessible right from the start of the project.
+
+- During the initial phases of development, Hungry Chef was deployed on Heroku. To avoid any potential deployment issues near the app's release, I made sure that the database and static files were accessible right from the start of the project.
 
 ###  Creating Database ==> ElephantSQL
 1. To generate a managed PostgreSQL database, please proceed to [ElephantSQL](https://customer.elephantsql.com/) and either sign up or sign in to your account. Once you've logged in, click on the 'Create New Instance' button.
