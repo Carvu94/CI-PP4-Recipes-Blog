@@ -4,6 +4,7 @@
 
     <div class="page-title">
         <h3>Delete: {{ recipe.title }}</h3>
+        <!-- delete recipe -->
         <form method="POST">
             {% csrf_token %}
             <strong>Are you sure you want to delete your recipe?</strong>

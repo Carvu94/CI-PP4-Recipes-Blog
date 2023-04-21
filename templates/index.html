@@ -1,58 +1,59 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<div class="row page-title">
-    <div class="col-md-8 m-auto text-center">
-        <h1>Welcome to the Hungry Chef</h1>
-        <br>
-        <p>A blog where you can find best recipes and share your owns.</p>
-        <p>Check out some of our most popular recipes:</p>
+    <!-- title -->
+    <div class="row page-title">
+        <div class="col-md-8 m-auto text-center">
+            <h1>Welcome to the Hungry Chef</h1>
+            <br>
+            <p>A blog where you can find best recipes and share your owns.</p>
+            <p>Check out some of our most popular recipes:</p>
+        </div>
     </div>
-</div>
 
-<div class="container-fluid recipe-margin">
-    <div class="row">
+    <div class="container-fluid recipe-margin">
+        <div class="row">
 
-        <div class="col-12 mt-3 left">
-            <div class="row">
-            {% for recipe in recipe_list %}
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="image-container">
-                                {% if "placeholder" in recipe.featured_image.url %}
-                                <img class="card-img-top" src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                                {% else %}
-                                <img class="card-img-top" src=" {{ recipe.featured_image.url }}">
-                                {% endif %}
-                                <div class="image-flash">
-                                    <p class="author">Author: {{ recipe.author }}</p>
+            <div class="col-12 mt-3 left">
+                <div class="row">
+                    <!-- recipe cards -->
+                {% for recipe in recipe_list %}
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="image-container">
+                                    {% if "placeholder" in recipe.featured_image.url %}
+                                    <img class="card-img-top" src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                                    {% else %}
+                                    <img class="card-img-top" src=" {{ recipe.featured_image.url }}">
+                                    {% endif %}
+                                    <div class="image-flash">
+                                        <p class="author">Author: {{ recipe.author }}</p>
+                                    </div>
                                 </div>
                             </div>
+                            <a href="{% url 'recipe_detail' recipe.slug %}" class="post-link">
+                                <h2 class="card-title">{{ recipe.title }}</h2>
+                                <p class="card-text">{{ recipe.excerpt }}</p>
+                            </a>
+                            <hr/>
+                            <p class="card-text text-muted h6"> {{ recipe.created_on }} <i class="far fa-heart"></i> {{ recipe.number_of_likes }}</p>
                         </div>
-                        <a href="{% url 'recipe_detail' recipe.slug %}" class="post-link">
-                            <h2 class="card-title">{{ recipe.title }}</h2>
-                            <p class="card-text">{{ recipe.excerpt }}</p>
-                        </a>
-                        <hr/>
-                        <p class="card-text text-muted h6"> {{ recipe.created_on }} <i class="far fa-heart"></i> {{ recipe.number_of_likes }}</p>
+                        {% if user.is_authenticated and user.id == recipe.author.id or user.is_superuser %}
+                        <!-- edit/delete recipe -->
+                        <a href="{% url 'edit_recipe' recipe.id %}" class="btn btn-outline-secondary" aria-label="Go to the Edit Recipe Page">Edit</a>
+                        <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-outline-danger" aria-label="Go to the Delete Recipe Page">Delete</a>
+                        
+                        {% endif %}
                     </div>
-                    {% if user.is_authenticated and user.id == recipe.author.id or user.is_superuser %}
-
-                    <a href="{% url 'edit_recipe' recipe.id %}" class="btn btn-outline-secondary" aria-label="Go to the Edit Recipe Page">Edit</a>
-                    <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-outline-danger" aria-label="Go to the Delete Recipe Page">Delete</a>
-                    
-                    {% endif %}
+                {% if forloop.counter|divisibleby:3 %}
                 </div>
-            {% if forloop.counter|divisibleby:3 %}
-            </div>
-            <div class="row">
-            {% endif %}
-            {% endfor %}
+                <div class="row">
+                {% endif %}
+                {% endfor %}
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 {%endblock%}

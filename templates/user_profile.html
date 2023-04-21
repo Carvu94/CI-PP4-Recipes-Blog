@@ -5,20 +5,18 @@
     <div class="page-title">
         <h1>Profile</h1>
     </div>
-
+    <!-- profile image -->
     {% if "placeholder" in recipe.featured_image.url %}
         <img src="https://www.stockvault.net/data/2010/03/13/113298/preview16.jpg%" alt="" class="card-img">
     {% else %}    
         <img src="{{ page_user.image.url }}" alt="profile-image" class="card-img rounded mx-auto d-block profile-pic">
     {% endif %}
 
-
+    <!-- profile detail -->
     <div class="page-title">
         <div class="card-body">
             <h5 class="card-title">
                 {{ page_user.user}}
-                {{ page_user.user.first_name }}
-                {{ page_user.user.last_name }}
             </h5>
 
             <p class="card-text">
@@ -26,6 +24,7 @@
             </p>
         </div>
         {% if user.is_authenticated %}
+            <!-- edit/delete profile -->
             {% if user.id == profile.user.id %}            
             <a href="{% url 'edit_profile' profile.id %}"
             class="btn btn-outline-secondary" aria-label="Go to the Edit Profile Page">Edit Profile</a>
