@@ -1,9 +1,10 @@
 # Hungry Chef
 
+Hungry Chef is a blog web site.
 (Developer: Matej Car)
 
 
-![PP4](/)
+![PP4](/docs/images/am-i-responsive.png)
 
 
 [ >>> Live live website ]()
@@ -154,15 +155,28 @@ For creating wireframes I was using Balsamiq.
 
 
 - Languages:
+   - HTML
+   - CSS
+   - Javascript
+   - Boostrap
+   - Python
+   - Django 
 
+- Libraries & Technologies:
 
-- Libraries:
-
+   - [Am I Responsive](http://ami.responsivedesign.is/) 
+   - [Balsamiq](https://balsamiq.com/) 
+   - [Bootstrap 4.2](https://getbootstrap.com/). 
+   - [Cloudinary](https://cloudinary.com/) 
+   - [Lucidcharts](https://lucid.app/) 
+   - [Favicon.io](https://favicon.io)
+   - [Chrome dev tools](https://developers.google.com/web/tools/chrome-devtools/)
+   - [Boostrap icons](https://fontawesome.com/) 
+   - [Git](https://git-scm.com/) 
+   - [GitHub](https://github.com/)
+   - [Google Fonts](https://fonts.google.com/)   
 
 - Other:
-
-
-### Frameworks & Tools
 
 
 [Back to Table Of Contents](#table-of-contents)
