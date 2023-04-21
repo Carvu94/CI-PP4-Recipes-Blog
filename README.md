@@ -59,11 +59,12 @@ Hungry Chef is a blog web site.
 - As a registered user I can add a recipe to my cookbook so that I can easily find the recipes
 - As a registered user I can edit my cookbook so that I can change the list of recipes
 - As a registered user I can delete my cookbook so that my cookbook is no longer visible
-- As a registered user I can like/unlike the books so that express my opinion
+- As a registered user I can like/unlike the cookbooks so that express my opinion
 - As a registered user I can post a comment on a recipe so that interact with a user that posted
 - As a registered user I can add the recipe on the blog so that other people can see and share their opinion
 - As a registered user I can edit my recipe so that update my recipe
 - As a registered user I can delete my recipe so that it is not visible to other users
+- As a registered user I can see messages to know if my actions were successfull or not
 
 #### **Site Admin**
 - As a site admin I can approve/disapprove the comments so that I can decide if the content is relevant
@@ -325,6 +326,13 @@ Hungry Chef is a blog web site.
 
 ### Agile Design
 
+- Using Github Issues I created a templates for User Stories and Epics which I was using to organize my work. 
+
+- As it was my first time using Agile approach, I found myself very often adding new user storiesm abd adjusting existing user stories in different epics.
+
+#### Kanban Board
+
+- As a visual representation of the project's status, I was using Kanban Board. Here is the [link](https://github.com/users/Carvu94/projects/4/views/1)
 
 ### Data Model
 
@@ -334,7 +342,7 @@ For creating data diagram I was using Lucidchart
 
 ### Wireframes
 
-For creating wireframes I was using Balsamiq.
+- For creating wireframes I was using Balsamiq.
 
 #### **Home Page**
 ![Home Page](/docs/images/Home%20page.png)
@@ -408,6 +416,28 @@ For creating wireframes I was using Balsamiq.
 
 ## Testing
 
+### Device Testing
+
+- project was tested during and post development on following devices:
+
+   - MacBook Pro
+   - Samsung S21
+   - Huwei P20
+   - HP Laptop
+
+### Browser Testing
+
+- Project was tested during and post development on following browsers:
+
+   - Chrome
+   - Brave
+   - Firefox
+   - Safari
+
+### Automated Testing
+
+- Automated testing was conducted utilizing the "unittest" module from the Python standard library, which is integrated with Django's unit tests. 
+
 
 [Back to Table Of Contents](#table-of-contents)
 
@@ -426,13 +456,28 @@ DETAIL: Key (slug)=() already exists.*
 
 After some research, I added 'slugify' method to the recipe model and redirected the user to the recipes page.
 
-
-## Remaining Bugs
-
 **Admin Post Deletion**
 
 When the admin is deleting comments from the page view, the wrong comment is deleted.
 
+
+**Users not able to upload profile/recipe images**
+
+When users try to upload new images to profile or recipe, the image is not saved.
+
+With mentors help and cloudinary documentation, edit profile and edit recipe views and forms were adjusted to properly upload to cloudinary and in database.
+
+**Number of likes on Cookbooks not displayed**
+
+Number of likes on cookbooks not displayed on cookbook cards or detail on cookbooks.html and cookbook_detail.html
+
+After some research i realised i forgot to def number_of_likes in models.py for cookbook. 
+
+## Remaining Bugs
+
+**Edit Cookbook**
+
+When user follows the link to Edit Cookbook, the title says 'Edit recipe' as the same form is used for updating recipe and cookbook. 
 
 ## Deployment
 ***
