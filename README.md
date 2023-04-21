@@ -83,12 +83,222 @@ Hungry Chef is a blog web site.
 
 # Features
 
-
 ## Existing Features
 
 
+### Nav-bar and Logo
+
+- this feature is present throughout entire project except on a page where user is prompt to define his profile role for using the app, and since the incentive is to pick the role as its vital part of a user functionality of the web app I decided to not incude this feature in this part of the project.
+
+- page logo is also a link to home page. Other than that, navbar consists of links to: Home page, About Us, Recipes, Cookbooks, Categories, and Contact Us pages.
+
+- authenticated user has his username visible on the navbar which is a link to profile page.
+
+- unauthenticated user can see links to Register/Login instead of username.
+
+- this feature also contains search bar to quickly search recipes by keyword.
 
 
+![Nav-bar](/docs/features/nav_bar.png)
+
+### Home Page
+
+- this feature contains the carousel for aesthetis, and top recipes. The Carousel is present throughout the whole project.
+
+- Top recipes are listed based on number of likes. This way users are able to see few best recipes straight away. 
+
+- Users are also able to see recipe card that contains number of likes and comments. 
+
+![Carousel](/docs/features/carousel.png)
+
+![Home Page](/docs/features/top_recipes.png)
+
+### Footer 
+
+- This feature contains a quote from Hungry Chef, Contact information and copyright.
+
+- This feature si present throughout the whole project
+
+![Footer](/docs/features/footer.png)
+
+### About us
+
+- This feature gives more information to users regarding the blog.
+
+- This feature also contains fun facts regarding food. 
+
+![About us](/docs/features/about_us_page.png)
+
+### Recipes
+
+- This feature lists all recipes on blog.
+
+- This feature allows authenticated users to create recipe. unverified users will not be able to see this option. 
+
+- This feature also contains recipe cards with picutres, author name, recipe title, date posted, number of likes and comments. 
+
+- This feature allows users to access the recipe details. 
+
+![Recipes](/docs/features/recipes_page.png)
+
+### Recipe detail
+
+- This feature allows user to see all recipe details and comments section.
+
+- authenticated users will be able to like and comment posts.
+
+- if authenticated user is owner of recipe, he will be able to see Edit/Delete buttons
+
+![Recipe Detail](/docs/features/recipe_detail.png)
+
+### Add recipe
+
+- This feature allows authenticated users to create their own recipe. 
+
+- unverified users are not able to access this page. 
+
+- Before recipes are posted, they must be approved by admin. 
+
+![Recipe Add](/docs/features/add_recipe.png)
+
+### Edit recipe
+
+- This feature allows authenticated users to edit their own recipe. Users are not able to edit other users recipes.
+
+- unverified users are not able to access this page. 
+
+![Recipe Edit](/docs/features/edit_recipe.png)
+
+### Delete recipe
+
+- This feature allows authenticated users to delete their own recipe. Users are not able to delete other users recipes.
+
+- unverified users are not able to access this page. 
+
+![Recipe Delete](/docs/features/dlt-confirm.png)
+
+### Comments
+
+- This feature allows authenticated users to interact with recipes and leave their comments. 
+
+- Before comments are posted, they must be approved by admin. 
+
+- Users are able to edit and delete their own comments. 
+
+![Comments](/docs/features/comments_section.png)
+
+### Edit comments
+
+- This feature allows authenticated users that are owner of comments to edit them. 
+
+![Comment Edit](/docs/features/comment_edit_msg.png)
+
+### Delete comments
+
+- This feature allows authenticated users that are owner of comments to delete them. 
+
+![Delete Comment](/docs/features/dlt-comment-modal.png)
+
+### Prev & Next buttons
+
+- This feature allows users to change pages on recipes and cookbooks pages. 
+
+![Prev & Next Button](/docs/features/prev_next_btn.png)
+
+### Cookbooks
+
+- This feature allows users too see cookbooks that other users created.
+
+- Users are able to see cookbook picture, author, title, description, date created and number of likes. 
+
+- Authenticated users will see a button to create their own cookbook. 
+
+- unverified users will not be able to see the button to create cookbook.
+
+![Cookbooks](/docs/features/cookbooks_page.png)
+
+### Add Cookbook
+
+- This feature allows authenticated users to create cookbook. 
+
+- Before cookbook is posted, it must be approved by admin.
+
+![Cookbook Add](/docs/features/create_cookbook.png)
+
+### Edit Cookbook
+
+- This feature allows authenticated users to edit their own cookbook.  
+
+![Cookbook Edit](/docs/features/edit_book.png)
+
+### Categories
+
+- This feature allows users to see categories that admin set.
+
+- Admin is able to create, edit and delete categories through admin panel.
+
+- This feature allows users to pick a category of food that they desire and see all recipes in that category. 
+
+![Categories](/docs/features/categories_list.png)
+
+### Category results
+
+- This feature lists all recipes in chosen category. 
+
+![Category Results](/docs/features/category_result.png)
+
+### Contact Us
+
+- This feature is a form that allows users to contact owner of the Hungry Chef and give feedback or query. 
+
+![Contact us](/docs/features/contact_us.png)
+
+### Register
+
+- This feature allows users to register for a profile to be able to post recipes, create cookbooks and comment. 
+
+![Register](/docs/features/sign-up.png)
+
+### Login
+
+- This feature allows existing users to login to be able to interact with content.
+
+![Login](/docs/features/sign-in.png)
+
+### Profile
+
+- This feature allows registered users to update their profile bio or image. 
+
+- unverified users are able to see profile pages of other users. 
+
+![Profile](/docs/features/profile.png)
+
+### Edit profile
+
+- This feature allows authenticated users to edit or delete their profile.
+
+![Edit Profile](/docs/features/edit_profile.png)
+
+### Search
+
+- This feature allows all users to search for recipes by keywords. 
+
+![Search](/docs//features/search_results.png)
+
+### Messages
+
+- Messages are available for all user actions to inform users on success of their actions. 
+
+![Message1](/docs/features/add_recipe_msg.png)
+![Message2](/docs/features/comment_msg.png)
+![Message3](/docs/features/edit_recipe_msg.png)
+![Message4](/docs/features/sign_in_msg.png)
+![Message5](/docs/features/recipe-edit-msg.png)
+![Message6](/docs/features/comment_edit_msg.png)
+![Message7](/docs/features/create_cookbook_msg.png)
+![Message8](/docs/features/delete_profile_msg.png)
+![Message9](/docs/features/dlt-comment-msg.png)
+![Message10](/docs/features/recipe-del-msg.png)
 
 
 [Back to Table Of Contents](#table-of-contents)
@@ -96,7 +306,18 @@ Hungry Chef is a blog web site.
 
 ## Future Features
 
+ - Categories drop-down list in Nav-Bar
+   - This feature would give users faster access to wanted categories.
 
+- Comments on Cookbooks
+   - This feature would give authenticated users option to express their opinion on other users cookbooks.
+
+- Add to Cookbook button
+   - This feature would be possible for authenticated users that have cookbooks. 
+   - This feature would allow users to add recipes to their cookbook without having to go to edit cookbook. 
+
+- Text formatting for recipes and cookbooks
+   - This feature would create a much better look for blog
 
 
 ## Technical Design
