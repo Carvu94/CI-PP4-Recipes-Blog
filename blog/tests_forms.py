@@ -110,3 +110,33 @@ class ProfilePageFormTestCase(TestCase):
         self.assertIn('bio', form.errors)
 
 
+class EditRecipeFormTest(TestCase):
+    def test_form_valid(self):
+        recipe = Recipe.objects.create(
+            title='Test',
+            content='Test',
+            time_to_cook=1,
+        )
+        data = {
+            'title': 'Updated Recipe',
+            'content': 'This is an updated test recipe',
+            'categories': recipe.categories.id,
+            'time_to_cook': 45,
+        }
+        form = EditRecipe(data=data, instance=recipe)
+        self.assertTrue(form.is_valid())
+
+    def test_form_invalid(self):
+        recipe = Recipe.objects.create(
+            title='Test Recipe',
+            content='This is a test recipe',
+            time_to_cook=30,
+        )
+        data = {
+            'title': '',
+            'content': '',
+            'categories': recipe.categories.id,
+            'time_to_cook': 'c',
+        }
+        form = EditRecipe(data=data, instance=recipe)
+        self.assertFalse(form.is_valid())
