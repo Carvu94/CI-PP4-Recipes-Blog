@@ -325,6 +325,15 @@ Hungry Chef is a food blog web site where users can find recipes and cookbooks c
 
 ## Technical Design
 
+[Coolors.co](https://coolors.co/) was used to create following colour pallette. 
+
+![Colour pallette](/docs/wireframes/colour_pallette.png)
+
+- Green and Red colour were used for Hungry Chef logo and White colour was used for rest of the project.
+
+[Google Fonts](https://fonts.google.com/) was used for fonts in this project. 
+
+- The fonts that I was using are Roboto and Lato
 
 ### Agile Design
 
@@ -410,7 +419,9 @@ For creating data diagram I was using Lucidchart
    - [Boostrap icons](https://fontawesome.com/) 
    - [Git](https://git-scm.com/) 
    - [GitHub](https://github.com/)
-   - [Google Fonts](https://fonts.google.com/)   
+   - [Google Fonts](https://fonts.google.com/)
+   - [Unspalsh](https://unsplash.com/)
+   - [Pexel](https://www.pexels.com/)   
 
 - Other:
 
