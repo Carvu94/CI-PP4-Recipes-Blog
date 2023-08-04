@@ -247,6 +247,12 @@ body {
     margin-right: 20px;
 }
 
+/* Footer */
+
+footer a {
+    text-decoration: none;
+}
+
 /* Profile image */
 .profile-pic {
     max-width: 200px;
