@@ -17,11 +17,11 @@
                     <div class="col-md-4">
                         <div class="card mb-4">
                             <div class="card-body">
-                                <div class="image-container">
+                                <div class="image-container img-size">
                                     {% if "placeholder" in recipe.featured_image.url %}
-                                    <img class="card-img-top" src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                                    <img class="card-img-top img-size" src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
                                     {% else %}
-                                    <img class="card-img-top" src=" {{ recipe.featured_image.url }}">
+                                    <img class="card-img-top img-size" src=" {{ recipe.featured_image.url }}">
                                     {% endif %}
                                     <div class="image-flash">
                                         <p class="author">Author: {{ recipe.author }}</p>

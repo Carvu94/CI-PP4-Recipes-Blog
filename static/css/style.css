@@ -182,6 +182,11 @@ body {
     margin-bottom: 20px;
 }
 
+.img-size {
+    width: 400px;
+    height: 400px;
+}
+
 /* Carousel */
 
 .carousel-inner {
