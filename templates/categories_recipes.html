@@ -57,6 +57,9 @@
                                 <div class="col-md-12">
                                     <h3>There are no recipes in category "{{ cats }}".</h3>
                                 </div>
+                                <div class="mb-3">
+                                    <a href="{% url 'add_recipe' %}" class="btn btn-outline-primary">Add your recipe here</a>
+                                </div>
                             </div>
                         </div>
                     {% endfor %}
