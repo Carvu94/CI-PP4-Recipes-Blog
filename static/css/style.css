@@ -14,9 +14,17 @@ body {
     color: #4A4A4F;
 }
 
+/* Navbar */
+
 .navbar-brand {
     font-size: 30px;
 }
+
+nav a {
+    text-decoration: none;
+}
+
+/* Logo */
 
 .logo-text {
     color: green;
@@ -168,6 +176,12 @@ body {
     text-align: center;
     align-items: center;
     display: grid;
+}
+
+/* Index */
+
+.indx-cards {
+    justify-content: center;
 }
 
 /* Recipes page */
