@@ -408,6 +408,7 @@ def delete_comment(request, comment_id):
     ))
 
 
+@method_decorator(login_required, name='dispatch')
 class EditComment(LoginRequiredMixin, UpdateView):
     """
     Edit Comment
@@ -534,6 +535,7 @@ class EditProfilePageView(LoginRequiredMixin, UpdateView):
         return response
 
 
+@method_decorator(login_required, name='dispatch')
 class DeleteUserProfile(LoginRequiredMixin, DeleteView):
     """
     Delete User Profile
