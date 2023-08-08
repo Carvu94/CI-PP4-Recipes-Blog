@@ -22,13 +22,13 @@
                     {% for recipe in recipe_list %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3">
                             <div class="card h-100 border-0">
-                                {% if recipe.featured_image.url %}
+                                {% if "placeholder" in recipe.featured_image.url %}
                                 <a href="{% url 'recipe_detail' recipe.slug %}">
-                                    <img class="card-img-top img-size img-fluid" src="{{ recipe.featured_image.url }}" alt="{{ recipe.title }}">
+                                    <img class="card-img-top img-size img-fluid" src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="{{ recipe.title }}">
                                 </a>
                                 {% else %}
                                 <a href="{% url 'recipe_detail' recipe.slug %}">
-                                    <img class="card-img-top img-size img-fluid" src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="{{ recipe.title }}">
+                                    <img class="card-img-top img-size img-fluid" src="{{ recipe.featured_image.url }}" alt="{{ recipe.title }}">
                                 </a>
                                 {% endif %}
                                 <div class="card-footer pt-0 border-0 text-left">
