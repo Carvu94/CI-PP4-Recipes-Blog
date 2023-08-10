@@ -14,45 +14,47 @@
     </div>
                 <div class="container-fluid">
                     <div class="row">
-                
-                        <!-- Blog Entries Column -->
-                        <div class="col-12 mt-3 left">
-                            <div class="row">
-                            {% for recipe in recipes %}
-                                <div class="col-md-4">
-                                    <div class="card mb-4">
-                                        <div class="card-body">
-                                            <div class="image-container img-size">
-                                                {% if "placeholder" in recipe.featured_image.url %}
-                                                <img class="card-img-top img-size" src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                                                {% else %}
-                                                <img class="card-img-top img-size" src=" {{ recipe.featured_image.url }}">
-                                                {% endif %}
-                                                <div class="image-flash">
-                                                    <p class="author">Author: {{ recipe.author }}</p>
+                        <div class="col-10 offset-1">
+                            <div class="row mt-3">
+                                {% for recipe in recipes %}
+                                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3">
+                                        <div class="card h-100 border-0">
+                                            {% if "placeholder" in recipe.featured_image.url %}
+                                            <a href="{% url 'recipe_detail' recipe.slug %}">
+                                                <img class="card-img-top img-size img-fluid" src="https://images.pexels.com/photos/2611817/pexels-photo-2611817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="{{ recipe.title }}">
+                                            </a>
+                                            {% else %}
+                                            <a href="{% url 'recipe_detail' recipe.slug %}">
+                                                <img class="card-img-top img-size img-fluid" src="{{ recipe.featured_image.url }}" alt="{{ recipe.title }}">
+                                            </a>
+                                            {% endif %}
+                                            <div class="card-footer pt-0 border-0 text-left">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h4 class="mb-0 mt-1 text-left">{{ recipe.title|slice:":20" }}</h4>
+                                                        <p class="mb-0 text-muted">Author: {{ recipe.author }}</p>
+                                                        <p class="small mt-1 mb-0 text-muted">
+                                                            {{ recipe.created_on }} <i class="far fa-heart"></i> <strong>{{ recipe.number_of_likes }}</strong>
+                                                            {% with recipe.comments.count as total_comments %}
+                                                            <strong class="text-secondary"><i class="far fa-comments"></i>
+                                                                <!-- total comments -->
+                                                            {{ total_comments }}
+                                                            </strong>
+                                                            {% endwith %}
+                                                        </p>
+                                                        
+                                                        {% if user.is_authenticated and user.id == recipe.author.id or user.is_superuser %}
+                                                            <small class="ml-3">
+                                                                <a href="{% url 'edit_recipe' recipe.id %}">Edit</a>
+                                                                <a href="{% url 'delete_recipe' recipe.id %}" class="text-danger">Delete</a>
+                                                            </small>
+                                                        {% endif %}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="{% url 'recipe_detail' recipe.slug %}" class="post-link">
-                                            <h2 class="card-title">{{ recipe.title }}</h2>
-                                            <p class="card-text">{{ recipe.excerpt }}</p>
-                                        </a>
-                                        <hr/>
-                                        <p class="card-text text-muted h6">{{ recipe.created_on }} <i class="far fa-heart"></i>{{ recipe.number_of_likes }}</p>
                                     </div>
-                                    <!-- Edit/Delete Recipe -->
-                                    {% if user.is_authenticated and user.id == recipe.author.id or user.is_superuser %}
-                
-                                    <a href="{% url 'edit_recipe' recipe.id %}" class="btn-edit btn-sm btn-secondary mb-3" aria-label="Go to the Edit Recipe Page">Edit</a>
-                                    <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-danger" aria-label="Go to the Delete Recipe Page">Delete</a>
-                                    
-                                    {% endif %}
-                                </div>
-                            {% if forloop.counter|divisibleby:3 %}
-                            </div>
-                            <div class="row">
-                            {% endif %}
-                            {% endfor %}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
