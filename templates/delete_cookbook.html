@@ -4,11 +4,11 @@
 {% block content %}
 
     <div class="page-title">
-        <h3>Delete: {{ recipe.title }}</h3>
+        <h3>Delete: {{ cookbook.title }}</h3>
         <!-- delete cookbook form -->
         <form method="POST">
             {% csrf_token %}
-            <strong>Are you sure you want to delete your recipe?</strong>
+            <strong>Are you sure you want to delete your cookbook?</strong>
             <br>
             <br>
             <button type="submit" class="btn btn-outline-danger" value="Save">Delete Cookbook</button>
