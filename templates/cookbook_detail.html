@@ -9,10 +9,15 @@
                     <!-- Cookbook title -->
                     <h1>{{ cookbook.title }}</h1>
                     <!-- cookbook author and created date -->
-                    <a class="no-dec" href="{% url 'profile_page' cookbook.author.profile.id %}">
+                    {% if cookbook.author.profile %}
+                        <a class="no-dec" href="{% url 'profile_page' cookbook.author.profile.id %}">
+                            <p>{{ cookbook.author }}</p>
+                        </a>
+                        <p>{{ cookbook.created_on }}</p>
+                    {% else %}
                         <p>{{ cookbook.author }}</p>
-                    </a>
-                    <p>{{ cookbook.created_on }}</p>
+                        <p>{{ cookbook.created_on }}</p>
+                    {% endif %}
                     <!-- Cookbook content -->
                     <p class="card-text ">{{ cookbook.content | safe }}</p>
                     <div class="row">
