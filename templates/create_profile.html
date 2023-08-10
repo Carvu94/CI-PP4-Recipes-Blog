@@ -7,12 +7,20 @@
         <h1>Create Profile</h1>
     </div>
     <!-- create profile form -->
-    <div class="page-title">
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-outline-primary" value="Save">Create</button>
-        </form>
-    </div>
+    <form class="form-control row" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="col">
+            <p>Bio:</p>
+            {{ form.bio }}
+            <br><br>
+        </div>
+        <div class="col">
+            <p>Image:</p>
+            {{ form.image }}
+            <br><br>
+        <div class="col">
+            <button type="submit" class="btn btn-outline-primary" value="Save">Create Profile</button>
+        </div>
+    </form>
 
 {% endblock %}

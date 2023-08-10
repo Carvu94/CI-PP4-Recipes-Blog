@@ -5,12 +5,21 @@
 
     <div class="page-title">
         <h1>Edit Profile</h1>
-        <!-- edit profile form -->
-        <form class="form-control" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-outline-primary" value="Save">Update Profile</button>
-        </form>
     </div>
+    <form class="form-control row" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="col">
+            <p>Bio:</p>
+            {{ form.bio }}
+            <br><br>
+        </div>
+        <div class="col">
+            <p>Image:</p>
+            {{ form.image }}
+            <br><br>
+        <div class="col">
+            <button type="submit" class="btn btn-outline-primary" value="Save">Edit Profile</button>
+        </div>
+    </form>
 
 {% endblock %}
