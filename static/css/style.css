@@ -206,6 +206,10 @@ nav a {
     object-fit: cover;
 }
 
+.card-footer {
+    max-width: 400px;
+}
+
 /* Carousel */
 
 .carousel-inner {
