@@ -17,10 +17,13 @@
         <div class="d-md-block col-md-6">
             <!-- Recipe title -->
             <h1 class="post-title">{{ recipe.title }}</h1>
-
+            {% if recipe.author.profile %}
             <a href="{% url 'profile_page' recipe.author.profile.id %}">
                 <p class="post-subtitle">{{ recipe.author }}</p>
             </a>
+            {% else %}
+                <p class="post-subtitle">{{ recipe.author }}</p>
+            {% endif %}
             <p class="post-subtitle">{{ recipe.created_on }}</p>
             <p class="post-subtitle">{{ recipe.time_to_cook }} minutes </p>
         </div>
