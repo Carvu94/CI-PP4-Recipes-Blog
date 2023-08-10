@@ -1,18 +1,45 @@
 {% extends "base.html" %}
-{% block title %}Edit Recipe{% endblock %}
+{% block title %}Add Recipe{% endblock %}
 
 {% block content %}
 
     <div class="page-title">
         <h1>Edit recipe</h1>
     </div>
-    <div class="page-title">
-        <!-- edit recipe form -->
-        <form class="form-control"  method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
+    <!-- add recipe form -->
+    
+    <form class="form-control row" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="col">
+            <p>Title:</p>
+            {{ form.title }}
+            <br><br>
+        </div>
+        <div class="col">
+            <p>Content:</p>
+            {{ form.content }}
+            <br><br>
+        </div>
+        <div class="col">
+            <p>Image:</p>
+            {{ form.featured_image }}
+            <br><br>
+        </div>
+        <div class="col">
+            <p>Categories:</p>
+            <p class="small text-muted">Hold CTRL or COMMAND + click to select multiple recipes</p>
+            {{ form.categories }}
+            <br><br>
+        </div>
+        <div class="col">
+            <p>Time to cook:</p>
+            {{ form.time_to_cook }}
+            <br><br>
+        </div>
+        <div class="col">
             <button type="submit" class="btn btn-outline-primary" value="Save">Edit Recipe</button>
-        </form>
-    </div>
+        </div>
+    </form>
+
 
 {% endblock %}
