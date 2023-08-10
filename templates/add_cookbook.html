@@ -7,11 +7,33 @@
         <h1>Create Cookbook</h1>
     </div>
     <!-- add cookbook form -->
-    <div class="page-title">
-        <form class="form-control" method="POST" enctype="multipart/form-data">
+    <div>
+        <form class="form-control row" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-outline-primary" value="Save">Add Cookbook</button>
+            <div class="col">
+                <p>Title:</p>
+                {{ form.title }}
+                <br><br>
+            </div>
+            <div class="col">
+                <p>Content:</p>
+                {{ form.content }}
+                <br><br>
+            </div>
+            <div class="col">
+                <p>Image:</p>
+                {{ form.featured_image }}
+                <br><br>
+            </div>
+            <div class="col">
+                <p>Recipes:</p>
+                <p class="small text-muted">Hold CTRL or COMMAND + click to select multiple recipes</p>
+                {{ form.recipes }}
+                <br><br>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-outline-primary" value="Save">Add Cookbook</button>
+            </div>
         </form>
     </div>
 

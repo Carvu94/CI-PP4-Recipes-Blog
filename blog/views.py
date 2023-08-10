@@ -143,7 +143,8 @@ class AddCookbookView(generic.CreateView):
     fields = (
         'title',
         'content',
-        'featured_image'
+        'featured_image',
+        'recipes'
         )
 
     def upload(request):
