@@ -7,7 +7,7 @@ Hungry Chef is a food blog web site where users can find recipes and cookbooks c
 ![PP4](/docs/images/am-i-responsive.png)
 
 
-[ >>> Live live website ]()
+[ >>> Live live website ](https://hungry-chef.herokuapp.com/)
 
 
 ## Table of Contents
@@ -76,9 +76,22 @@ Hungry Chef is a food blog web site where users can find recipes and cookbooks c
 - As a site admin I can create draft recipes so that I can finish writing the content later
 - As a site admin I can create, update and delete categories so that I can manage my blog content
 
+
+#### **Testing User Stories**
+
+
+
 ### Agile Methodology
 
+- GitHub Projects were uset to create kanban board, and Issues were used to create User Stories and Epics which helped me move through the project and organize tasks. 
 
+- Using GitHub Issues, I was also documenting bugs in order to make sure that they are not forgotten. 
+
+- User Stories were organized in Epics which helped me to build the project section by section. 
+
+- Agile Methodology and GitHub Projects helped me a lot in organizing my own work on this project, but I still very often found myself adjusting and adding User stories.  
+
+Link to GitHub Project can be found [here](https://github.com/users/Carvu94/projects/4)
 
 
 [Back to Table Of Contents](#table-of-contents)
