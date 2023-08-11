@@ -17,10 +17,8 @@
 
 - HTML validation was done with [w3 Nu Html Checker](https://validator.w3.org/nu/)
 
-- I am very aware of below issues and imporance of addressing them.
 
-![Home](/docs/testing/home-html1.png)
-![Home2](/docs/testing/home-html2.png)
+![Home](/docs/testing/home_html.png)
 ![About](/docs/testing/about_html.png)
 ![Recipes](/docs/testing/recipes_html1.png)
 ![Recipe Detail](/docs/testing/recipe_detail_html.png)
